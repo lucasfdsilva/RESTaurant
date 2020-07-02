@@ -2,6 +2,7 @@ const express = require('express');
 
 const UserController = require('./controllers/UserController.js');
 const MenuItemController = require('./controllers/MenuItemController.js');
+const SlotsController = require('./controllers/SlotsController.js');
 
 const openRoutes = express.Router();
 const protectedRoutes = express.Router();
@@ -22,6 +23,13 @@ openRoutes.get('/menu/:id', MenuItemController.view);
 openRoutes.post('/menu', MenuItemController.create);
 openRoutes.put('/menu', MenuItemController.update);
 openRoutes.delete('/menu', MenuItemController.delete);
+
+//Restaurant Available Slots Controller Routes
+openRoutes.get('/slots', SlotsController.index);
+openRoutes.get('/slots/:id', SlotsController.view);
+openRoutes.post('/slots', SlotsController.create);
+openRoutes.put('/slots', SlotsController.update);
+openRoutes.delete('/slots', SlotsController.delete);
 
 /*
 //Session Controller Routes
