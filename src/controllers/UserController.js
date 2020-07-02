@@ -1,106 +1,114 @@
-const knex = require('../database/knex');
+const knex = require("../database/knex");
 const bcrypt = require("bcryptjs");
 const crypto = require("crypto");
 
 module.exports = {
-
-  async index(req, res, next){
-
+  async index(req, res, next) {
     try {
-      const allUsersFromDB = await knex('users');
-      return res.json(allUsersFromDB); 
-
+      const allUsersFromDB = await knex("users");
+      return res.json(allUsersFromDB);
     } catch (error) {
-      next(error);
+        next(error);
     }
-
   },
-  
-  async view(req, res, next){
+
+  async view(req, res, next) {
     try {
-      const { id } = req.params.id
+      const { id } = req.params;
 
       if (!id) {
         return res.status(400).json({ message: "Missing User ID" });
       }
 
-      const userFromDB = knex('users').where({id: id});
+      const userFromDB = await knex("users").where({ id: id }).first();
 
-      if(!userFromDB) return res.status(400).json({ message: 'No User Found'});
+      console.log(userFromDB);
 
-      return res.json(userFromDB);
-      
+      if (!userFromDB) return res.status(400).json({ message: "No User Found" });
+
+      return res.status(200).json({ user: userFromDB });
+
     } catch (error) {
-      next(error);
+        next(error);
     }
   },
 
   async create(req, res, next) {
     try {
       const { firstName, lastName, email, password } = req.body;
-      
+
       if (!firstName || !lastName || !email || !password) {
-        res.status(400).json({ message: "Missing Required Information from Request" });
+        return res.status(400).json({ message: "Missing Required Information from Request" });
       }
 
-      const userFromDB = await knex('users').where({email: email})
+      const userFromDB = await knex("users").where({ email: email }).first();
 
-      if (!userFromDB) {
-        const salt = await bcrypt.genSalt();
-        const hashedPassword = await bcrypt.hash(password, salt);
+      if(userFromDB) return res.status(400).json({ message: "Email address already registered" });
 
-        verificationToken = crypto.randomBytes(20).toString("hex");
+      const salt = await bcrypt.genSalt();
+      const hashedPassword = await bcrypt.hash(password, salt);
 
-        let user = {
-          firstName: firstName,
-          lastName: lastName,
-          email: email.toLowerCase(),
-          password: hashedPassword,
-          verificationToken: verificationToken
-        };
+      verificationToken = crypto.randomBytes(20).toString("hex");
 
-        await User.create(user);
+      const newUser = await knex('users').insert({
+        first_name: firstName,
+        last_name: lastName,
+        email: email.toLowerCase(),
+        password: hashedPassword,
+        verification_token: verificationToken,
+      });
 
-        //SendGrid configuration & Email send
-        const msg = {
-          to: `${user.email}`,
-          from: "no-reply@boardgeek.ie",
-          subject: "Please verify your email address - Board Geek",
-          html: `<p>Please use the following token to verify your email address: http://apiboardgeek.co.uk/users/verify/${user.verificationToken}</p>`
-        };
-
-        await sgMail.send(msg).then(() => {
-          console.log("SendGrid Service Email Sent");
-        })
-          .catch(err => {
-            console.log(err);
-          });
-
-        res.status(200).json({ message: 'User Created Succesfully', verificationEmail: 'Verification Email Sent Successfully', user: user });
-
-      } else {
-        res.status(403).json({ message: "ERROR: User Already Registered", user: userFromDB });
-      }
+      return res.status(201).json({ message: "User Created Succesfully" });
 
     } catch (error) {
-      next(error);
+        next(error);
     }
   },
 
-  async update(req, res, next){
+  async update(req, res, next) {
     try {
-      
+      const { id, firstName, lastName, email } = req.body;
+
+      if (!id || !firstName || !lastName || !email) {
+        return res.status(400).json({ message: "Missing Required Information from Request" });
+      }
+
+      const userFromDB = await knex("users").where({ id: id }).first();
+
+      if(!userFromDB) return res.status(400).json({ message: "No User Found" });
+
+      const updatedUser = await knex('users').where({ id: id }).update({
+        first_name: firstName,
+        last_name: lastName,
+        email: email.toLowerCase()
+      });
+
+      return res.status(200).json({ message: 'User updated succesfully'});
+
     } catch (error) {
-      next(error);
+        next(error);
     }
   },
 
-  async delete(req, res, next){
+  async delete(req, res, next) {
     try {
-      
+
+      const { id } = req.body;
+
+      if (!id) {
+        return res.status(400).json({ message: "Missing Required Information from Request" });
+      }
+
+      const userFromDB = await knex("users").where({ id: id }).first();
+
+      if(!userFromDB) return res.status(400).json({ message: "No User Found" });
+
+      const deletedUser = await knex('users').where({ id: id}).del();
+
+      return res.status(200).json({ message: 'User deleted succesfully' });
+
     } catch (error) {
-      next(error);
+        next(error);
     }
-  }
-  
-}
+  },
+};
