@@ -18,6 +18,17 @@ module.exports = {
   
   async view(req, res, next){
     try {
+      const { id } = req.params.id
+
+      if (!id) {
+        return res.status(400).json({ message: "Missing User ID" });
+      }
+
+      const userFromDB = knex('users').where({id: id});
+
+      if(!userFromDB) return res.status(400).json({ message: 'No User Found'});
+
+      return res.json(userFromDB);
       
     } catch (error) {
       next(error);
@@ -32,7 +43,7 @@ module.exports = {
         res.status(400).json({ message: "Missing Required Information from Request" });
       }
 
-      let userFromDB = await knex('users').where({email: email})
+      const userFromDB = await knex('users').where({email: email})
 
       if (!userFromDB) {
         const salt = await bcrypt.genSalt();
