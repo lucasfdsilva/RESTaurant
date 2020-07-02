@@ -6,7 +6,7 @@ const user = awsParamStore.getParameterSync('restaurant-db-username', { region: 
 const password = awsParamStore.getParameterSync('restaurant-db-password', { region: 'eu-west-1' } );
 
 module.exports = {
-
+  
   development: {
     client: 'mysql',
     connection: {
@@ -22,6 +22,6 @@ module.exports = {
     seeds: {
       directory: `${__dirname}/src/database/seeds`
     }
-  }
+  },
 
 };

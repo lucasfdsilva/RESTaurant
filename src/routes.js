@@ -24,11 +24,11 @@ protectedRoutes.use(authMiddleware)
 */
 
 //User Controller Routes
-//openRoutes.get('/users', UserController.index)
-//openRoutes.get('/users/:id', UserController.view);
+openRoutes.get('/users', UserController.index)
+openRoutes.get('/users/:id', UserController.view);
 openRoutes.post('/users/register', UserController.create);
-//openRoutes.put('/users/update', UserController.update);
-//openRoutes.delete('/users/delete', UserController.delete);
+openRoutes.put('/users/update', UserController.update);
+openRoutes.delete('/users/delete', UserController.delete);
 
 /*
 openRoutes.get('/users/verify/:verificationToken', UserController.verifyUser);
