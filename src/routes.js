@@ -4,6 +4,7 @@ const UserController = require('./controllers/UserController.js');
 const MenuItemController = require('./controllers/MenuItemController.js');
 const SlotController = require('./controllers/SlotController.js');
 const TableController = require('./controllers/TableController.js');
+const BookingController = require('./controllers/BookingController.js');
 
 const openRoutes = express.Router();
 const protectedRoutes = express.Router();
@@ -38,6 +39,13 @@ openRoutes.get('/tables/:id', TableController.view);
 openRoutes.post('/tables', TableController.create);
 openRoutes.put('/tables', TableController.update);
 openRoutes.delete('/tables', TableController.delete);
+
+//Bookings Controller Routes
+openRoutes.get('/bookings', BookingController.index);
+openRoutes.get('/bookings/:id', BookingController.view);
+openRoutes.post('/bookings', BookingController.create);
+openRoutes.put('/bookings', BookingController.update);
+openRoutes.delete('/bookings', BookingController.delete);
 
 /*
 //Session Controller Routes
