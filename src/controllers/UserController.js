@@ -35,9 +35,9 @@ module.exports = {
 
   async create(req, res, next) {
     try {
-      const { firstName, lastName, email, password } = req.body;
+      const { firstName, lastName, email, password, isAdmin } = req.body;
 
-      if (!firstName || !lastName || !email || !password) {
+      if (!firstName || !lastName || !email || !password || !isAdmin) {
         return res.status(400).json({ message: "Missing Required Information from Request" });
       }
 
@@ -55,6 +55,7 @@ module.exports = {
         last_name: lastName,
         email: email.toLowerCase(),
         password: hashedPassword,
+        is_admin: isAdmin,
         verification_token: verificationToken,
       });
 
@@ -67,9 +68,9 @@ module.exports = {
 
   async update(req, res, next) {
     try {
-      const { id, firstName, lastName, email } = req.body;
+      const { id, firstName, lastName, email, isAdmin } = req.body;
 
-      if (!id || !firstName || !lastName || !email) {
+      if (!id || !firstName || !lastName || !email || !isAdmin) {
         return res.status(400).json({ message: "Missing Required Information from Request" });
       }
 
@@ -80,7 +81,8 @@ module.exports = {
       const updatedUser = await knex('users').where({ id: id }).update({
         first_name: firstName,
         last_name: lastName,
-        email: email.toLowerCase()
+        email: email.toLowerCase(),
+        is_admin: isAdmin
       });
 
       return res.status(200).json({ message: 'User updated succesfully'});
