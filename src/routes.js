@@ -1,5 +1,8 @@
 const express = require('express');
 
+/*//Middlewares
+const authMiddleware = require('./middlewares/auth');*/
+
 const UserController = require('./controllers/UserController.js');
 const MenuItemController = require('./controllers/MenuItemController.js');
 const SlotController = require('./controllers/SlotController.js');
@@ -8,9 +11,6 @@ const BookingController = require('./controllers/BookingController.js');
 
 const openRoutes = express.Router();
 const protectedRoutes = express.Router();
-
-/*//Middlewares
-const authMiddleware = require('./middlewares/auth');*/
 
 //User Controller Routes
 openRoutes.get('/users', UserController.index)
@@ -51,12 +51,9 @@ openRoutes.delete('/bookings', BookingController.delete);
 //Session Controller Routes
 const SessionController = require('./controllers/SessionController');
 
-/*
 //Protected Routes will use the Auth Middleware to verify JSON Web Token
 protectedRoutes.use(authMiddleware)
-*/
 
-/*
 openRoutes.get('/users/verify/:verificationToken', UserController.verifyUser);
 openRoutes.post('/users/forgot_password', UserController.forgotPassword);
 openRoutes.post('/users/reset_password', UserController.reset);
