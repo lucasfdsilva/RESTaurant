@@ -1,0 +1,30 @@
+#!/bin/bash
+
+#general
+sudo yum install epel-release
+sudo yum -y update
+sudo yum install -y git vim-enhanced
+
+#nodejs
+curl -sL https://rpm.nodesource.com/setup_12.x | sudo bash -
+sudo yum install -y nodejs
+
+#restaurant-management
+git clone https://github.com/lucasfdsilva/restaurant-management.git
+cd restaurant-management
+sudo npm install
+
+#dbmigrations
+cd /home/centos/restaurant-management
+npx knex migrate:latest
+
+#pm2
+sudo npm install -g pm2
+pm2 start /home/centos/restaurant-management/src/app.js --name restaurant-backend
+pm2 startup
+sudo env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -u centos --hp /home/centos
+pm2 save
+
+#nginx
+sudo yum install -y nginx
+sudo systemctl start nginx
