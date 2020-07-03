@@ -2,7 +2,8 @@ const express = require('express');
 
 const UserController = require('./controllers/UserController.js');
 const MenuItemController = require('./controllers/MenuItemController.js');
-const SlotsController = require('./controllers/SlotsController.js');
+const SlotController = require('./controllers/SlotController.js');
+const TableController = require('./controllers/TableController.js');
 
 const openRoutes = express.Router();
 const protectedRoutes = express.Router();
@@ -25,11 +26,18 @@ openRoutes.put('/menu', MenuItemController.update);
 openRoutes.delete('/menu', MenuItemController.delete);
 
 //Restaurant Available Slots Controller Routes
-openRoutes.get('/slots', SlotsController.index);
-openRoutes.get('/slots/:id', SlotsController.view);
-openRoutes.post('/slots', SlotsController.create);
-openRoutes.put('/slots', SlotsController.update);
-openRoutes.delete('/slots', SlotsController.delete);
+openRoutes.get('/slots', SlotController.index);
+openRoutes.get('/slots/:id', SlotController.view);
+openRoutes.post('/slots', SlotController.create);
+openRoutes.put('/slots', SlotController.update);
+openRoutes.delete('/slots', SlotController.delete);
+
+//Tables Controller Routes
+openRoutes.get('/tables', TableController.index);
+openRoutes.get('/tables/:id', TableController.view);
+openRoutes.post('/tables', TableController.create);
+openRoutes.put('/tables', TableController.update);
+openRoutes.delete('/tables', TableController.delete);
 
 /*
 //Session Controller Routes
