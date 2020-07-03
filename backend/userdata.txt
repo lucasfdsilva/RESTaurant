@@ -11,16 +11,16 @@ sudo yum install -y nodejs
 
 #restaurant-management
 git clone https://github.com/lucasfdsilva/restaurant-management.git
-cd restaurant-management
+cd restaurant-management/backend
 sudo npm install
 
 #dbmigrations
-cd /home/centos/restaurant-management
+cd /home/centos/restaurant-management/backend
 npx knex migrate:latest
 
 #pm2
 sudo npm install -g pm2
-pm2 start /home/centos/restaurant-management/src/app.js --name restaurant-backend
+pm2 start /home/centos/restaurant-management/backend/src/app.js --name restaurant-backend
 pm2 startup
 sudo env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -u centos --hp /home/centos
 pm2 save
