@@ -37,7 +37,7 @@ module.exports = {
     try {
       const { firstName, lastName, email, password, isAdmin } = req.body;
 
-      if (!firstName || !lastName || !email || !password || !isAdmin) {
+      if (!firstName || !lastName || !email || !password) {
         return res.status(400).json({ message: "Missing Required Information from Request" });
       }
 
@@ -59,7 +59,7 @@ module.exports = {
         verification_token: verificationToken,
       });
 
-      return res.status(201).json({ message: "User Created Succesfully" });
+      return res.status(201).json({ message: "User Created Succesfully", newUserID: newUser });
 
     } catch (error) {
         next(error);
