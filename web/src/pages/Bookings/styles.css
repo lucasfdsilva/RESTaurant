@@ -1,0 +1,88 @@
+.bookings-container {
+  width: 100%;
+  max-width: 1180px;
+  padding: 0 30px;
+  margin: 32px auto;
+}
+
+.bookings-container header {
+  display: flex;
+  align-items: center;
+}
+
+.bookings-container header span {
+  font-size: 20px;
+  margin-left: 24px;
+}
+
+.bookings-container header img {
+  height: 80px;
+}
+
+.bookings-container header a {
+  width: 260px;
+  margin-left: auto;
+  margin-top: 0;
+}
+
+.bookings-container header button {
+  height: 60px;
+  width: 60px;
+  border-radius: 4px;
+  border: 1px solid;
+  background: transparent;
+  margin-left: 16px;
+  transition: border-color 0.2s
+}
+
+.bookings-container header button:hover{
+  border-color: #999;
+}
+
+.bookings-container h1 {
+  margin-top: 80px;
+  margin-bottom: 24px;
+}
+
+.bookings-container ul {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 24px;
+  list-style: none;
+}
+
+.bookings-container ul li {
+  background: #FFF;
+  padding: 24px;
+  border-radius: 8px;
+  position: relative;
+}
+
+.bookings-container ul li button {
+  position: absolute;
+  right: 24px;
+  top: 24px;
+  border: 0;
+  background: transparent;
+}
+
+.bookings-container ul li button:hover {
+  filter:brightness(90%)
+}
+
+.bookings-container ul li strong {
+  display: block;
+  margin-bottom: 16px;
+  color: #41414d;
+}
+
+.bookings-container ul li p + strong {
+  margin-top: 32px;
+}
+
+.bookings-container ul li p {
+  color: #737380;
+  line-height: 21px;
+  font-size: 16px;
+}
+
