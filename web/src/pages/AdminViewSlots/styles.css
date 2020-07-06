@@ -32,7 +32,7 @@
 
 .admin-slots-container ul {
   margin-top: 25px;
-  display: grid;
+  display: inline-grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 24px;
   list-style: none;

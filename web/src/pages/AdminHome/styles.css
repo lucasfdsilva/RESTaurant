@@ -25,10 +25,6 @@
   color: #f1f1f1;
 }
 
-.admin-home-container .menu {
-  margin-top: 20px;
-}
-
 .admin-home-container ul {
   list-style-type: none;
   margin: 0;
@@ -83,9 +79,9 @@
   z-index: 1;
 }
 
-.dropdown-content a {
+.top-navigation .dropdown-content a {
   display: block;
-  color: #000;
+  color: rgb(0, 0, 0);
   padding: 8px;
   margin-top: 0px;
   text-decoration: none;

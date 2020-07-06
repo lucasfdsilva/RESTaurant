@@ -22,7 +22,7 @@ function AdminHome(){
           <Link className="header-link" to="/">Time Slots</Link>
           <div class="dropdown-content">
             <Link className="header-link" to="/admin/slots">View Timeslots</Link>
-            <Link className="header-link" to="/">Create Timeslot</Link>
+            <Link className="header-link" to="/admin/slots/new">Create Timeslot</Link>
           </div>
         </div>
 
