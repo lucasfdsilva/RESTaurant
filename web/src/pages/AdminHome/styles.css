@@ -1,21 +1,27 @@
 .admin-home-container {
   width: 100%;
   max-width: 1180px;
+  padding: 0 30px;
   margin: 32px auto;
-  background: #FFF;
+  background: #f1f1f1;
 }
 
-.admin-home-container .top-navigation {
+.admin-home-container header {
   display: flex;
   align-items: center;
 
   width: 100%;
   padding: 3px;
-  background: #4d4df8;
+  background: #3939f5;
   box-shadow: 0 0 100px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  align-items: center;
 }
 
-.admin-home-container .top-navigation a {
+.admin-home-container header a {
+  width: 260px;
+  margin-left: auto;
+  margin-top: 0;
   color: #f1f1f1;
 }
 

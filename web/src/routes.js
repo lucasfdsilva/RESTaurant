@@ -8,6 +8,7 @@ import Bookings from './pages/Bookings';
 import NewBooking from './pages/NewBooking';
 
 import AdminHome from './pages/AdminHome';
+import AdminViewSlots from './pages/AdminViewSlots';
 
 function Routes(){
   return (
@@ -20,6 +21,7 @@ function Routes(){
         <Route path="/bookings/new" exact component={NewBooking}/>
 
         <Route path="/admin" exact component={AdminHome}/>
+        <Route path="/admin/slots" exact component={AdminViewSlots}/>
       </Switch>
     </BrowserRouter>
   )
