@@ -11,6 +11,7 @@ import AdminHome from './pages/AdminHome';
 import AdminViewSlots from './pages/AdminViewSlots';
 import AdminCreateSlot from './pages/AdminCreateSlot';
 import AdminViewUsers from './pages/AdminViewUsers';
+import AdminCreateUser from './pages/AdminCreateUser';
 
 function Routes(){
   return (
@@ -26,6 +27,7 @@ function Routes(){
         <Route path="/admin/slots" exact component={AdminViewSlots}/>
         <Route path="/admin/slots/new" exact component={AdminCreateSlot}/>
         <Route path="/admin/users" exact component={AdminViewUsers}/>
+        <Route path="/admin/users/new" exact component={AdminCreateUser}/>
       </Switch>
     </BrowserRouter>
   )

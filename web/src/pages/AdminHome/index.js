@@ -10,6 +10,7 @@ function AdminHome(){
     <div className="admin-home-container">
 
       <header className="top-navigation">
+      <Link className="header-link" to="/admin">Admin Panel</Link>
         <div class="dropdown">
           <Link className="header-link" to="/">Users</Link>
           <div class="dropdown-content">

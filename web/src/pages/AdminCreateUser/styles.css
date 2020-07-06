@@ -1,0 +1,30 @@
+.admin-slots-container form {
+  display: inline-grid;
+  grid-template-columns: repeat(1, 1fr);
+}
+
+.admin-slots-container strong {
+  margin-top: 10px;
+}
+
+.admin-slots-container input {
+  margin-top: 5px;
+  width: 100%;
+}
+
+.admin-slots-container .weekdays {
+  display: grid;
+  margin-top: 15px;
+  display: inline-grid;
+  grid-template-columns: repeat(8, 1fr);
+  list-style: none; 
+  align-items: center;
+}
+
+.admin-slots-container h2 {
+  margin-top: 25px;
+}
+
+.admin-slots-container button {
+  margin-bottom: 25px;
+}

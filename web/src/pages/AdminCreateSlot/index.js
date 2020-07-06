@@ -51,6 +51,7 @@ function AdminCreateSlots(){
   return (
     <div className="admin-slots-container">
       <header className="top-navigation">
+      <Link className="header-link" to="/admin">Admin Panel</Link>
       <div className="dropdown">
           <Link className="header-link" to="/">Users</Link>
           <div className="dropdown-content">
