@@ -46,6 +46,7 @@ openRoutes.get('/bookings/:id', BookingController.view);
 openRoutes.post('/bookings', BookingController.create);
 openRoutes.put('/bookings', BookingController.update);
 openRoutes.delete('/bookings', BookingController.delete);
+openRoutes.get('/availability', BookingController.checkSlotsAvailability);
 
 /*
 //Session Controller Routes

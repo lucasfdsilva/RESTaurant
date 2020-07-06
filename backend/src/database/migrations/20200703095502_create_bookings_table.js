@@ -3,7 +3,6 @@ exports.up = function(knex) {
   return knex.schema.createTable('bookings', function(table){
     table.increments('id')
     table.integer('user_id').unsigned().references('id').inTable('users');
-    table.integer('table_id').unsigned().references('id').inTable('tables');
     table.integer('slot_id').unsigned().references('id').inTable('slots');
     table.date('date').notNullable()
 

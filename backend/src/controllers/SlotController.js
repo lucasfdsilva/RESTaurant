@@ -31,9 +31,9 @@ module.exports = {
 
   async create(req, res, next) {
     try {
-      const { startTime, duration, monday, tuesday, wednesday, thursday, friday, saturday, sunday } = req.body;
+      const { startTime, duration, maxCapacity, monday, tuesday, wednesday, thursday, friday, saturday, sunday } = req.body;
 
-      if (!startTime || !duration) {
+      if (!startTime || !duration || !maxCapacity) {
         return res.status(400).json({ message: "Missing Required Information from Request" });
       }
 
@@ -44,6 +44,7 @@ module.exports = {
       const newSlot = await knex('slots').insert({
         start_time: startTime,
         duration: duration,
+        max_capacity: maxCapacity,
         monday: monday,
         tuesday: tuesday,
         wednesday: wednesday,
@@ -62,9 +63,9 @@ module.exports = {
 
   async update(req, res, next) {
     try {
-      const { id, startTime, duration, monday, tuesday, wednesday, thursday, friday, saturday, sunday } = req.body;
+      const { id, startTime, duration, maxCapacity, monday, tuesday, wednesday, thursday, friday, saturday, sunday } = req.body;
 
-      if (!id || !startTime || !duration) {
+      if (!id || !startTime || !duration || !maxCapacity) {
         return res.status(400).json({ message: "Missing Required Information from Request" });
       }
 
@@ -75,6 +76,7 @@ module.exports = {
       const updatedSlot = await knex('slots').where({ id: id }).update({
         start_time: startTime,
         duration: duration,
+        max_capacity: maxCapacity,
         monday: monday,
         tuesday: tuesday,
         wednesday: wednesday,
@@ -84,7 +86,7 @@ module.exports = {
         sunday: sunday
       });
 
-      return res.status(200).json({ message: 'Menu Item updated succesfully'});
+      return res.status(200).json({ message: 'Slot updated succesfully'});
 
     } catch (error) {
         next(error);

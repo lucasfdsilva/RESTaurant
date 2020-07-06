@@ -13,7 +13,9 @@ module.exports = {
       host: dbHost.Value,
       user: user.Value,
       password: password.Value,
-      database: 'restaurantdb'
+      database: 'restaurantdb',
+      timezone: 'UTC',
+      dateStrings: true
     },
     migrations: {
       tableName: 'knex_migrations',
