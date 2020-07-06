@@ -36,7 +36,6 @@
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 24px;
   list-style: none;
-  margin-bottom: 25px;
 }
 
 .admin-slots-container ul li {

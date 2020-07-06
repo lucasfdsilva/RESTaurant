@@ -13,8 +13,8 @@ function AdminHome(){
         <div class="dropdown">
           <Link className="header-link" to="/">Users</Link>
           <div class="dropdown-content">
-            <Link className="header-link" to="/">View User</Link>
-            <Link className="header-link" to="/">Create User</Link>
+            <Link className="header-link" to="/admin/users">View Users</Link>
+            <Link className="header-link" to="/admin/users/new">Create User</Link>
           </div>
         </div>
 
