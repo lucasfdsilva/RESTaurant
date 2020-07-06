@@ -7,6 +7,8 @@ import Register from './pages/Register';
 import Bookings from './pages/Bookings';
 import NewBooking from './pages/NewBooking';
 
+import AdminHome from './pages/AdminHome';
+
 function Routes(){
   return (
     <BrowserRouter>
@@ -16,6 +18,8 @@ function Routes(){
         <Route path="/register" exact component={Register}/>
         <Route path="/bookings" exact component={Bookings}/>
         <Route path="/bookings/new" exact component={NewBooking}/>
+
+        <Route path="/admin" exact component={AdminHome}/>
       </Switch>
     </BrowserRouter>
   )
