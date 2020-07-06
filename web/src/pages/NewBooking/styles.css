@@ -46,6 +46,47 @@
   margin-top: 8px;
 }
 
-.new-booking-container .content form select {
-  margin-top: 8px;
+.new-booking-container .content form ul {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 24px;
+  list-style: none;
+  margin-top: 10px;
+}
+
+.new-booking-container .content form ul button {
+  box-shadow: 0px 1px 0px 0px #fff6af;
+	background:linear-gradient(to bottom, #e8ff66 5%, #f0ff24 100%);
+	background-color:#e8ff66;
+	border-radius:6px;
+	border:1px solid #ffaa22;
+	display:inline-block;
+	cursor:pointer;
+	color:#333333;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffee66;
+}
+
+.new-booking-container form ul button:hover {
+  background:linear-gradient(to bottom, #f0ff24 5%, #e8ff66 100%);
+	background-color:#f0ff24;
+}
+
+.new-booking-container form ul button:focus {
+  background:#ffd724;
+}
+
+.new-booking-container form ul button:active {
+  position:relative;
+	top:1px;
+}
+
+.new-booking-container form button:disabled {
+  background: rgb(190, 190, 190);
+  color: #f0f0f5;
+  cursor: not-allowed;
 }

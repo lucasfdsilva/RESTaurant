@@ -104,7 +104,7 @@ module.exports = {
 
   async checkSlotsAvailability(req, res, next){
     try {
-      const { date, numberOfPeople } = req.body;
+      const { date, numberOfPeople } = req.query;
       var availableSlots = [];
 
       if (!date || !numberOfPeople) {
