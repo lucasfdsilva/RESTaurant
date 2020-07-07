@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { FiArrowLeft } from 'react-icons/fi';
+
+import NavMenu from '../../components/NavMenu';
+
 import api from '../../services/api';
 
 import './styles.css';
@@ -43,19 +46,7 @@ function Register(){
 
   return (
     <div className="register-container">
-      <header>
-        <img src={logoSmall} alt="asystec logo"/>
-        <Link className="header-link" to="/">Home</Link>
-        <Link className="header-link" to="/menu">Menu</Link>
-        <Link className="header-link" to="/register">Register</Link>
-        <Link className="header-link" to="/login">Login</Link>
-        <Link className="header-link" to="/bookings/new">Book Online</Link>
-        <Link className="header-link" onClick={() => {
-          localStorage.setItem('id', '');
-          localStorage.setItem('accessToken', '');
-          return history.push('/');
-        }}>Logout</Link>
-      </header>
+      <NavMenu />
 
       <div className="content">
         <section>

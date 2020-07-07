@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { FiPower, FiTrash2 } from 'react-icons/fi';
 
+import LoggedNavMenu from '../../components/LoggedNavMenu';
+
 import './styles.css';
 
 import logoSmall from '../../assets/logo-small.png';
@@ -9,16 +11,7 @@ import logoSmall from '../../assets/logo-small.png';
 function Bookings(){
   return (
     <div className="bookings-container">
-
-      <header>
-        <img src={logoSmall} alt="asystec small logo"/>
-        <span>Welcome, USERNAME</span>
-
-        <Link className="button" to="/bookings/new">Make a Booking</Link>
-        <button type="button">
-          <FiPower size={18} color="#E02041" />
-        </button>
-      </header>
+      <LoggedNavMenu />
 
       <h1>Your Bookings</h1>
 
