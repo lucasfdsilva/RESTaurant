@@ -33,7 +33,7 @@ function Login(){
 
       alert(`User Logged In Successfully. JWT Token: ${localStorage.getItem('accessToken')}`);
 
-      history.push('/bookings');
+      history.push('/profile');
 
     } catch (error) {
         alert(`Couldn't Log in. Error: ${error}.`);

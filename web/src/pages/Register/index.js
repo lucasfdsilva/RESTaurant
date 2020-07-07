@@ -19,7 +19,7 @@ function Register(){
   async function handleRegister(event){
     event.preventDefault();
 
-    if(password !== passwordConfirmation) alert("Passwords don't match. Please try again");
+    if(password !== passwordConfirmation) return alert("Passwords don't match. Please try again");
 
     const data = {
       firstName,

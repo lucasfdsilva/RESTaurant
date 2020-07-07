@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import Menu from './pages/Menu';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import Profile from './pages/Profile';
 import Bookings from './pages/Bookings';
 import NewBooking from './pages/NewBooking';
 
@@ -22,6 +23,7 @@ function Routes(){
         <Route path="/menu" exact component={Menu}/>
         <Route path="/login" exact component={Login}/>
         <Route path="/register" exact component={Register}/>
+        <Route path="/profile" exact component={Profile}/>
         <Route path="/bookings" exact component={Bookings}/>
         <Route path="/bookings/new" exact component={NewBooking}/>
 
