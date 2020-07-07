@@ -70,7 +70,7 @@ module.exports = {
     try {
       const { id, firstName, lastName, email, isAdmin } = req.body;
 
-      if (!id || !firstName || !lastName || !email || !isAdmin) {
+      if (!id || !firstName || !lastName || !email ) {
         return res.status(400).json({ message: "Missing Required Information from Request" });
       }
 
