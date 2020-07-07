@@ -6,13 +6,14 @@ import api from '../../services/api';
 
 import './styles.css';
 
-import logoSmall from '../../assets/logo-small.png'
+import logoSmall from '../../assets/underdog-logo.jpg'
 
 function NewBooking() {
   const [date, setDate] = useState('');
   const [numberOfPeople, setNumberOfPeople] = useState(0);
   const [availableSlots, setAvailableSlots] = useState([]);
   const [slotID, setSlotID] = useState(0);
+  const [email, setEmail] = useState('');
 
   const history = useHistory();
 
@@ -51,6 +52,15 @@ function NewBooking() {
 
   return (
     <div className="new-booking-container">
+      <header>
+        <img src={logoSmall} alt="asystec logo"/>
+        <Link className="header-link" to="/">Home</Link>
+        <Link className="header-link" to="/menu">Menu</Link>
+        <Link className="header-link" to="/register">Register</Link>
+        <Link className="header-link" to="/login">Login</Link>
+        <Link className="header-link" to="/bookings/new">Book Online</Link>
+      </header>
+
       <div className="content">
         <section>
           <img src={logoSmall} alt="asystec small logo"/>
@@ -86,6 +96,14 @@ function NewBooking() {
               </button>
             ))}
           </ul>
+
+          <input 
+            type="email" 
+            placeholder="Your email you@email.com"
+            value={email}
+            onChange={event => setEmail(event.target.value)}
+            disabled={slotID == 0}
+          />
 
           <button className="button" disabled={slotID == 0} onClick={handleBookingCreation}>Send Booking</button>
 

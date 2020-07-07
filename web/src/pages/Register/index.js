@@ -5,7 +5,7 @@ import api from '../../services/api';
 
 import './styles.css';
 
-import logoSmall from '../../assets/logo-small.png';
+import logoSmall from '../../assets/underdog-logo.jpg';
 
 function Register(){
   const [firstName, setFirstName] = useState('');
@@ -41,6 +41,15 @@ function Register(){
 
   return (
     <div className="register-container">
+      <header>
+        <img src={logoSmall} alt="asystec logo"/>
+        <Link className="header-link" to="/">Home</Link>
+        <Link className="header-link" to="/menu">Menu</Link>
+        <Link className="header-link" to="/register">Register</Link>
+        <Link className="header-link" to="/login">Login</Link>
+        <Link className="header-link" to="/bookings/new">Book Online</Link>
+      </header>
+
       <div className="content">
         <section>
           <img src={logoSmall} alt="asystec small logo"/>

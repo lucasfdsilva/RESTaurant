@@ -5,15 +5,23 @@ import { FiLogIn } from 'react-icons/fi';
 import './styles.css';
 
 import hamburguerImg from '../../assets/hamburguer.png';
-import logoSmall from '../../assets/logo-small.png';
+import logoSmall from '../../assets/underdog-logo.jpg';
 
 function Login(){
   return (
     <div className="login-container">
+      <header>
+        <img src={logoSmall} alt="asystec logo"/>
+        <Link className="header-link" to="/">Home</Link>
+        <Link className="header-link" to="/menu">Menu</Link>
+        <Link className="header-link" to="/register">Register</Link>
+        <Link className="header-link" to="/login">Login</Link>
+        <Link className="header-link" to="/bookings/new">Book Online</Link>
+      </header>
+
       <div className="content">
         <section className="form">
-          <img src={logoSmall} alt="Asystec Logo Small"/>
-
+          
           <form>
             <h1>Login</h1>
 
@@ -30,7 +38,7 @@ function Login(){
           </form>
         </section>
 
-        <img src={hamburguerImg} alt="Asystec Logo"/>
+        <img src={logoSmall} alt="Asystec Logo"/>
       </div>
     </div>
   )

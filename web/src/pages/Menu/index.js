@@ -4,12 +4,10 @@ import { Link } from 'react-router-dom';
 import './styles.css';
 
 import logoSmall from '../../assets/underdog-logo.jpg';
-import pintImg from '../../assets/pint-img.png';
 
-function Home(){
+function Login(){
   return (
-    <div className="home-container">
-
+    <div className="menu-container">
       <header>
         <img src={logoSmall} alt="asystec logo"/>
         <Link className="header-link" to="/">Home</Link>
@@ -20,12 +18,11 @@ function Home(){
       </header>
 
       <div className="content">
-        <h1>The Underdog Pub</h1>
-        <h2>Beer Specialists</h2>
-        <img src={pintImg} alt="image of a pint"/>
+        <h1>Menu Items</h1>  
       </div>
+
     </div>
   )
 }
 
-export default Home;
+export default Login;

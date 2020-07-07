@@ -1,12 +1,36 @@
 .login-container {
   width: 100%;
-  max-width: 1120px;
-  height: 100vh;
-  margin: 0 auto;
+  max-width: 1180px;
+  padding: 0 30px;
+  margin: 32px auto;
+}
 
+.login-container header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+
+  width: 100%;
+  padding: 3px;
+  background: #010103;
+  box-shadow: 0 0 100px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.login-container header span {
+  font-size: 20px;
+  margin-left: 24px;
+}
+
+.login-container header img {
+  height: 80px;
+}
+
+.login-container header a {
+  width: 260px;
+  margin-left: auto;
+  margin-top: 0;
 }
 
 .login-container .content {
