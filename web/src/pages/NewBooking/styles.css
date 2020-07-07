@@ -72,7 +72,7 @@
 
 .new-booking-container .content form ul {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   grid-gap: 24px;
   list-style: none;
   margin-top: 10px;

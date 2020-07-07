@@ -122,13 +122,13 @@ module.exports = {
       weekday[6] = "Saturday";
       var dateWeekDay = weekday[convertedDate.getDay()];
       
-      const allRegisteredSlotsWeekDayTrueRaw = await knex.schema.raw(`SELECT id, start_time, max_capacity from slots WHERE ${dateWeekDay} = true`);
+      const allRegisteredSlotsWeekDayTrueRaw = await knex.schema.raw(`SELECT id, start_time, duration, max_capacity from slots WHERE ${dateWeekDay} = true`);
       const existingBookingsOnDate = await knex("bookings").where({ date: date });
 
       //Get all slots that are registered for that week day
       var allRegisteredSlotsWeekDayTrueClean = [];
       for(const slot of allRegisteredSlotsWeekDayTrueRaw[0]){
-        allRegisteredSlotsWeekDayTrueClean.push({ "slot_id": slot.id, "start_time": slot.start_time, "max_capacity": slot.max_capacity });
+        allRegisteredSlotsWeekDayTrueClean.push({ "slot_id": slot.id, "start_time": slot.start_time, "duration": slot.duration ,"max_capacity": slot.max_capacity });
       }
 
       //Get all slots that already have bookings on that day
@@ -160,7 +160,7 @@ module.exports = {
         }
 
         if(slotCapacity >= numberOfPeople){
-          availableSlots.push({"slot_id": slot.slot_id, "start_time": slot.start_time, "max_capacity": slot.max_capacity, "available_capacity": slotCapacity});
+          availableSlots.push({"slot_id": slot.slot_id, "start_time": slot.start_time, "duration": slot.duration, "max_capacity": slot.max_capacity, "available_capacity": slotCapacity});
         }
       }
   

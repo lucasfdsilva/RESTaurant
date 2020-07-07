@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import './styles.css';
 
@@ -7,6 +7,9 @@ import logoSmall from '../../assets/underdog-logo.jpg';
 import pintImg from '../../assets/pint-img.png';
 
 function Home(){
+
+  const history = useHistory();
+
   return (
     <div className="home-container">
 
@@ -17,6 +20,11 @@ function Home(){
         <Link className="header-link" to="/register">Register</Link>
         <Link className="header-link" to="/login">Login</Link>
         <Link className="header-link" to="/bookings/new">Book Online</Link>
+        <Link className="header-link" onClick={() => {
+          localStorage.setItem('id', '');
+          localStorage.setItem('accessToken', '');
+          return history.push('/');
+        }}>Logout</Link>
       </header>
 
       <div className="content">

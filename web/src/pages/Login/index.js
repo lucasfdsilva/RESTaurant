@@ -49,6 +49,11 @@ function Login(){
         <Link className="header-link" to="/register">Register</Link>
         <Link className="header-link" to="/login">Login</Link>
         <Link className="header-link" to="/bookings/new">Book Online</Link>
+        <Link className="header-link" onClick={() => {
+          localStorage.setItem('id', '');
+          localStorage.setItem('accessToken', '');
+          return history.push('/');
+        }}>Logout</Link>
       </header>
 
       <div className="content">

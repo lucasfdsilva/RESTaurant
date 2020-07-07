@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { FiArrowLeft } from 'react-icons/fi';
 
@@ -9,13 +9,37 @@ import './styles.css';
 import logoSmall from '../../assets/underdog-logo.jpg'
 
 function NewBooking() {
+  const [id, setID] = useState(localStorage.getItem("id"));
+  const [accessToken, setAccessToken] = useState(localStorage.getItem("accessToken"));
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  
   const [date, setDate] = useState('');
   const [numberOfPeople, setNumberOfPeople] = useState(0);
   const [availableSlots, setAvailableSlots] = useState([]);
   const [slotID, setSlotID] = useState(0);
-  const [email, setEmail] = useState('');
 
   const history = useHistory();
+
+  useEffect(() => {
+    async function loadProfile(){
+    try {
+      
+      if(!id || !accessToken) return history.push('/login');
+      
+      const response = await api.get(`/users/${id}`);
+
+      setFirstName(response.data.user.first_name);
+      setLastName(response.data.user.last_name);
+      setEmail(response.data.user.email);
+
+    } catch (error) {
+      alert(`Couldn't Load User Profile. Please try again. Error: ${error}.`);
+    }
+  }
+  loadProfile();
+  }, [])
 
   async function handleCheckAvailability(event){
     event.preventDefault();
@@ -59,6 +83,11 @@ function NewBooking() {
         <Link className="header-link" to="/register">Register</Link>
         <Link className="header-link" to="/login">Login</Link>
         <Link className="header-link" to="/bookings/new">Book Online</Link>
+        <Link className="header-link" onClick={() => {
+          localStorage.setItem('id', '');
+          localStorage.setItem('accessToken', '');
+          return history.push('/');
+        }}>Logout</Link>
       </header>
 
       <div className="content">
@@ -92,7 +121,7 @@ function NewBooking() {
           <ul>
             {availableSlots.map(slot => (
               <button key={slot.slot_id} value={slotID} onClick={ function(event){ setSlotID(slot.slot_id); event.preventDefault()} }>
-                <strong>{slot.start_time}</strong>
+                <strong>{slot.start_time} - {slot.duration} mins {slot.available_capacity} capacity left</strong>
               </button>
             ))}
           </ul>
