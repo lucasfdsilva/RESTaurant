@@ -1,10 +1,8 @@
 import React from 'react';
-import { Link, useHistory } from 'react-router-dom';
-import NavMenu from '../../components/NavMenu';
+import { useHistory } from 'react-router-dom';
+import NavMenu from '../../../components/NavMenu';
 
 import './styles.css';
-
-import logoSmall from '../../assets/underdog-logo.jpg';
 
 function Login(){
 

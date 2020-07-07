@@ -1,16 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { FiArrowLeft } from 'react-icons/fi';
 
-import NavMenu from '../../components/NavMenu';
+import NavMenu from '../../../components/NavMenu';
 
-import api from '../../services/api';
+import api from '../../../services/api';
 
 import './styles.css';
 
-import logoSmall from '../../assets/underdog-logo.jpg';
+import logoSmall from '../../../assets/underdog-logo.jpg';
 
 function Register(){
+  const [id, setID] = useState(localStorage.getItem("id"));
+  const [accessToken, setAccessToken] = useState(localStorage.getItem("accessToken"));
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
@@ -18,6 +20,18 @@ function Register(){
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
 
   const history = useHistory();
+
+  useEffect(() => {
+    async function loadProfile(){
+      try {
+        if(id && accessToken) return history.push('/profile');
+
+      } catch (error) {
+        alert(`Couldn't Load User Profile. Please try again. Error: ${error}.`);
+      }
+  }
+  loadProfile();
+  }, [])
 
   async function handleRegister(event){
     event.preventDefault();

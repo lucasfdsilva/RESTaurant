@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 
 import './styles.css';
 
-
 function AdminHome(){
 
   return (

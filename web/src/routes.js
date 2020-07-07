@@ -1,20 +1,20 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import Home from './pages/Home';
-import Menu from './pages/Menu';
-import Login from './pages/Login';
-import Register from './pages/Register';
-import Profile from './pages/Profile';
-import EditProfile from './pages/EditProfile';
-import Bookings from './pages/Bookings';
-import NewBooking from './pages/NewBooking';
+import Home from './pages/Customer/Home';
+import Menu from './pages/Customer/Menu';
+import Login from './pages/Customer/Login';
+import Register from './pages/Customer/Register';
+import Profile from './pages/Customer/Profile';
+import EditProfile from './pages/Customer/EditProfile';
+import Bookings from './pages/Customer/Bookings';
+import NewBooking from './pages/Customer/NewBooking';
 
-import AdminHome from './pages/AdminHome';
-import AdminViewSlots from './pages/AdminViewSlots';
-import AdminCreateSlot from './pages/AdminCreateSlot';
-import AdminViewUsers from './pages/AdminViewUsers';
-import AdminCreateUser from './pages/AdminCreateUser';
+import AdminHome from './pages/Admin/AdminHome';
+import AdminViewSlots from './pages/Admin/AdminViewSlots';
+import AdminCreateSlot from './pages/Admin/AdminCreateSlot';
+import AdminViewUsers from './pages/Admin/AdminViewUsers';
+import AdminCreateUser from './pages/Admin/AdminCreateUser';
 
 function Routes(){
   return (

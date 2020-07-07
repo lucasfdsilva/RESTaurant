@@ -1,11 +1,10 @@
 import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import NavMenu from '../../components/NavMenu';
+import NavMenu from '../../../components/NavMenu';
 
 import './styles.css';
 
-import logoSmall from '../../assets/underdog-logo.jpg';
-import pintImg from '../../assets/pint-img.png';
+import pintImg from '../../../assets/pint-img.png';
 
 function Home(){
 

@@ -2,11 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { FiPower, FiTrash2 } from 'react-icons/fi';
 
-import LoggedNavMenu from '../../components/LoggedNavMenu';
+import LoggedNavMenu from '../../../components/LoggedNavMenu';
 
 import './styles.css';
-
-import logoSmall from '../../assets/logo-small.png';
 
 function Bookings(){
   return (

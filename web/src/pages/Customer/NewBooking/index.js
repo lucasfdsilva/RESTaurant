@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { FiArrowLeft } from 'react-icons/fi';
 
-import LoggedNavMenu from '../../components/LoggedNavMenu';
+import LoggedNavMenu from '../../../components/LoggedNavMenu';
 
-import api from '../../services/api';
+import api from '../../../services/api';
 
 import './styles.css';
 
-import logoSmall from '../../assets/underdog-logo.jpg'
+import logoSmall from '../../../assets/underdog-logo.jpg'
 
 function NewBooking() {
   const [id, setID] = useState(localStorage.getItem("id"));
@@ -58,7 +58,7 @@ function NewBooking() {
     event.preventDefault();
 
     const data = {
-      userID: 3,
+      userID: id,
       date,
       slotID,
       numberOfPeople: parseInt(numberOfPeople),
