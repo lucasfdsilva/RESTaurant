@@ -21,6 +21,8 @@ function NewBooking() {
   const [numberOfPeople, setNumberOfPeople] = useState(0);
   const [availableSlots, setAvailableSlots] = useState([]);
   const [slotID, setSlotID] = useState(0);
+  const [startTime, setStartTime] = useState('');
+  const [duration, setDuration] = useState(0);
 
   const history = useHistory();
 
@@ -62,6 +64,8 @@ function NewBooking() {
       date,
       slotID,
       numberOfPeople: parseInt(numberOfPeople),
+      startTime,
+      duration
     }
 
     try {
@@ -69,7 +73,7 @@ function NewBooking() {
 
       alert('Booking Registered Succesfully');
 
-      history.push('/')
+      history.push('/bookings');
 
     } catch (error) {
       alert(`Couldn't Create Booking.`);
@@ -110,7 +114,14 @@ function NewBooking() {
 
           <ul>
             {availableSlots.map(slot => (
-              <button key={slot.slot_id} value={slotID} onClick={ function(event){ setSlotID(slot.slot_id); event.preventDefault()} }>
+              <button key={slot.slot_id} value={slotID} onClick={ 
+                function(event){ 
+                  event.preventDefault();
+                  setSlotID(slot.slot_id);
+                  setStartTime(slot.start_time); 
+                  setDuration(slot.duration);  
+                } 
+              }>
                 <strong>{slot.start_time} - {slot.duration} mins {slot.available_capacity} capacity left</strong>
               </button>
             ))}

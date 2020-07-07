@@ -10,7 +10,7 @@ function LoggedNavMenu(){
   const history = useHistory();
 
   return(
-    <div className="navigation-menu">
+    <div className="navigation-menu-container">
       <header>
         <img src={logoSmall} alt="asystec logo"/>
         <Link className="header-link" to="/">Home</Link>

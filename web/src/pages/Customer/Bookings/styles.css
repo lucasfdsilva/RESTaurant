@@ -8,6 +8,14 @@
 .bookings-container header {
   display: flex;
   align-items: center;
+
+  width: 100%;
+  padding: 3px;
+  background: #010103;
+  box-shadow: 0 0 100px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  align-items: center;
+  margin-bottom: 25px;
 }
 
 .bookings-container header span {
@@ -39,45 +47,58 @@
   border-color: #999;
 }
 
+.bookings-container .content {
+  width: 100%;
+  padding: 96px;
+  background: #f0f0f5;
+  box-shadow: 0 0 100px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
 .bookings-container h1 {
-  margin-top: 80px;
-  margin-bottom: 24px;
+  margin-top: 25px;
+  margin-bottom: 25px;
 }
 
 .bookings-container ul {
+  margin-top: 25px;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 24px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 50px;
   list-style: none;
+  margin-bottom: 25px;
+  align-items: center;
 }
 
 .bookings-container ul li {
   background: #FFF;
   padding: 24px;
   border-radius: 8px;
-  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
 }
 
 .bookings-container ul li button {
-  position: absolute;
-  right: 24px;
-  top: 24px;
-  border: 0;
+  position: flex;
   background: transparent;
+  max-width: 2px;
+  border: 0;
+  margin-top: 10px;
 }
 
 .bookings-container ul li button:hover {
-  filter:brightness(90%)
+  opacity: 0.8;
 }
 
 .bookings-container ul li strong {
   display: block;
-  margin-bottom: 16px;
+  margin-bottom: 5px;
   color: #41414d;
 }
 
 .bookings-container ul li p + strong {
-  margin-top: 32px;
+  margin-top: 10px;
 }
 
 .bookings-container ul li p {

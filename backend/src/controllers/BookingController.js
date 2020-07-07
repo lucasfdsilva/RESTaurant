@@ -3,8 +3,18 @@ const knex = require("../database/knex");
 module.exports = {
   async index(req, res, next) {
     try {
-      const allBookings = await knex("bookings");
-      return res.json(allBookings);
+      const { userID } = req.query;
+
+      let allBookings = [];
+
+      if(!userID){
+        allBookings = await knex("bookings");
+        return res.status(200).json(allBookings);
+      }
+
+      allBookings = await knex("bookings").where({ user_id: userID });
+      return res.status(200).json(allBookings);
+      
     } catch (error) {
         next(error);
     }
@@ -31,20 +41,19 @@ module.exports = {
 
   async create(req, res, next) {
     try {
-      const { userID, slotID, date, numberOfPeople } = req.body;
+      const { userID, slotID, date, numberOfPeople, startTime, duration } = req.body;
 
-      if (!userID || !slotID || !date || !numberOfPeople) {
+      if (!userID || !slotID || !date || !numberOfPeople || !startTime || !duration) {
         return res.status(400).json({ message: "Missing Required Information from Request" });
       }
-
-      //const bookingFromDB = await knex("bookings").where({ user_id: userID }).first();
-      //if(bookingFromDB) return res.status(400).json({ message: "There's 1 active booking for this user already" });
 
       const newBooking = await knex('bookings').insert({
         user_id: userID,
         slot_id: slotID,
         date: date,
-        number_of_people: numberOfPeople
+        number_of_people: numberOfPeople,
+        start_time: startTime,
+        duration: duration 
       });
 
       return res.status(201).json({ message: "Booking Registered Succesfully" });

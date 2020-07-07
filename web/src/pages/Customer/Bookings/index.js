@@ -1,91 +1,85 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { FiPower, FiTrash2 } from 'react-icons/fi';
+import React, { useState, useEffect } from 'react';
+import { Link, useHistory } from 'react-router-dom';
+import { FiTrash2 } from 'react-icons/fi';
+
+import api from '../../../services/api'
 
 import LoggedNavMenu from '../../../components/LoggedNavMenu';
 
 import './styles.css';
 
 function Bookings(){
+  const [id, setID] = useState(localStorage.getItem("id"));
+  const [accessToken, setAccessToken] = useState(localStorage.getItem("accessToken"));
+
+  const [bookings, setBookings] = useState([]);
+
+  const history = useHistory();
+
+  useEffect(() => {
+    async function loadProfile(){
+    try {
+      
+      if(!id || !accessToken) return history.push('/login');
+      
+      const response = await api.get(`/bookings?userID=${id}`);
+      setBookings(response.data);
+
+    } catch (error) {
+      alert(`Couldn't Load User Profile. Please try again. Error: ${error}.`);
+    }
+  }
+  loadProfile();
+  }, [])
+
+  async function handleBookingDeletion(event, bookingID){
+    event.preventDefault();
+
+    api.delete('bookings', { data: { id: bookingID }});
+
+    alert('Booking Deleted Succesfully');
+
+    window.location.reload();
+  }
+
   return (
     <div className="bookings-container">
       <LoggedNavMenu />
 
-      <h1>Your Bookings</h1>
+      <div className="content">
+        <h1>Your Bookings</h1>
 
-      <ul>
-        <li>
-          <strong>Date:</strong>
-          <p>DD/MM/YYYY</p>
+        <div className="bookings">
+          <ul>
+            {bookings.map(booking => (
+              <li key={booking.id}>
+                <strong>Booking ID:</strong>
+                <p>{booking.id}</p>
 
-          <strong>Time:</strong>
-          <p>HH:MM</p>
+                <strong>Slot ID:</strong>
+                <p>{booking.slot_id}</p>
 
-          <strong>Table:</strong>
-          <p>Table Name</p>
+                <strong>Date:</strong>
+                <p>{booking.date}</p>
 
-          <strong>People:</strong>
-          <p>Number of People</p>
+                <strong>Start Time:</strong>
+                <p>{booking.start_time}</p>
 
-          <button type="button">
-            <FiTrash2 size={20} color="#a8a8b3"/>
-          </button>
-        </li>
+                <strong>Duration:</strong>
+                <p>{booking.duration}</p>
 
-        <li>
-          <strong>Date:</strong>
-          <p>DD/MM/YYYY</p>
+                <strong>People:</strong>
+                <p>{booking.number_of_people}</p>
 
-          <strong>Time:</strong>
-          <p>HH:MM</p>
+                <button onClick={(event) => handleBookingDeletion(event, booking.id)}>
+                  <FiTrash2 size={20} color="#a8a8b3"/>
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
 
-          <strong>Table:</strong>
-          <p>Table Name</p>
-
-          <strong>People:</strong>
-          <p>Number of People</p>
-
-          <button type="button">
-            <FiTrash2 size={20} color="#a8a8b3"/>
-          </button>
-        </li>
-
-        <li>
-          <strong>Date:</strong>
-          <p>DD/MM/YYYY</p>
-
-          <strong>Time:</strong>
-          <p>HH:MM</p>
-
-          <strong>Table:</strong>
-          <p>Table Name</p>
-
-          <strong>People:</strong>
-          <p>Number of People</p>
-
-          <button type="button">
-            <FiTrash2 size={20} color="#a8a8b3"/>
-          </button>
-        </li>
-
-        <li>
-          <strong>Date:</strong>
-          <p>DD/MM/YYYY</p>
-
-          <strong>Time:</strong>
-          <p>HH:MM</p>
-
-          <strong>Table:</strong>
-          <p>Table Name</p>
-
-          <strong>People:</strong>
-          <p>Number of People</p>
-
-          <button type="button">
-            <FiTrash2 size={20} color="#a8a8b3"/>
-          </button>
-        </li>
-      </ul>
+      </div>
 
     </div>
   )
