@@ -19,6 +19,8 @@ function Register(){
   async function handleRegister(event){
     event.preventDefault();
 
+    if(password !== passwordConfirmation) alert("Passwords don't match. Please try again");
+
     const data = {
       firstName,
       lastName,
@@ -32,7 +34,7 @@ function Register(){
 
       alert(`User Registered Successfully. User ID: ${response.data.newUserID[0]}`);
 
-      history.push('/login')
+      history.push('/login');
 
     } catch (error) {
         alert(`Couldn't Register User. Error: ${error}.`);

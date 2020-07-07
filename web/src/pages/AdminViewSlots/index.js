@@ -14,12 +14,12 @@ function AdminViewSlots(){
         var formattedSlots = [];
         for(const slot of response.data){
           var weekDays = [];
-          if(slot.monday) weekDays.push('Monday');
-          if(slot.tuesday) weekDays.push('Tuesday');
-          if(slot.wednesday) weekDays.push('Wednesday');
-          if(slot.thursday) weekDays.push('Thursday');
-          if(slot.friday) weekDays.push('Friday');
-          if(slot.saturday) weekDays.push('Saturday');
+          if(slot.monday) weekDays.push('Monday, ');
+          if(slot.tuesday) weekDays.push('Tuesday, ');
+          if(slot.wednesday) weekDays.push('Wednesday, ');
+          if(slot.thursday) weekDays.push('Thursday, ');
+          if(slot.friday) weekDays.push('Friday, ');
+          if(slot.saturday) weekDays.push('Saturday, ');
           if(slot.sunday) weekDays.push('Sunday');
           if(!slot.sunday && !slot.monday &&!slot.tuesday &&!slot.wednesday &&!slot.thursday &&!slot.friday &&!slot.saturday) weekDays.push('No Week Day Selected');
 
