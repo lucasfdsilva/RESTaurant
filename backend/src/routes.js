@@ -3,6 +3,7 @@ const express = require('express');
 /*//Middlewares
 const authMiddleware = require('./middlewares/auth');*/
 
+const SessionController = require('./controllers/SessionController.js');
 const UserController = require('./controllers/UserController.js');
 const MenuItemController = require('./controllers/MenuItemController.js');
 const SlotController = require('./controllers/SlotController.js');
@@ -11,6 +12,9 @@ const BookingController = require('./controllers/BookingController.js');
 
 const openRoutes = express.Router();
 const protectedRoutes = express.Router();
+
+//Session Controller Routes
+openRoutes.post('/sessions', SessionController.create);
 
 //User Controller Routes
 openRoutes.get('/users', UserController.index)
