@@ -1,28 +1,7 @@
 .admin-slots-container {
-  width: 100%;
-  max-width: 1180px;
-  padding: 0 30px;
-  margin: 32px auto;
-  background: #f1f1f1;
-}
-
-.admin-slots-container header {
   display: flex;
-  align-items: center;
-
-  width: 100%;
-  padding: 3px;
-  background: #3939f5;
-  box-shadow: 0 0 100px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  align-items: center;
-}
-
-.admin-slots-container header a {
-  width: 260px;
-  margin-left: auto;
-  margin-top: 0;
-  color: #f1f1f1;
+  flex-direction: column;
+  border-radius: 2%;
 }
 
 .admin-slots-container h1 {
@@ -32,9 +11,7 @@
 
 .admin-slots-container ul {
   margin-top: 25px;
-  display: inline-grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 24px;
+  display: flex;
   list-style: none;
   margin-bottom: 25px;
 }

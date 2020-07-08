@@ -1,7 +1,7 @@
 .admin-home-container {
   display: grid;
   grid-template-columns: 1fr 6fr;
-  grid-template-rows: 5vh 90vh 5vh;
+  grid-template-rows: 60px minmax(830px, auto) 50px;
   grid-template-areas: "header header" "menu main" "footer footer";
   background-color: blueviolet;
 }
@@ -84,6 +84,9 @@
 .admin-home-container main {
   background: rgb(226, 226, 250);
   grid-area: main;
+
+  display: flex;
+  flex-direction: column;
 }
 
 .admin-home-container footer {
