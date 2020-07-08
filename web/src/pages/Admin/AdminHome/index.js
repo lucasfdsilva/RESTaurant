@@ -109,8 +109,8 @@ function AdminHome(){
 
       <footer>
         <p>Created by Lucas Da Silva</p>
+        <a className="footer-links" href="https://github.com/lucasfdsilva/restaurant-management">GitHub Repo</a>
       </footer>
-
     </div>
   )
 }
