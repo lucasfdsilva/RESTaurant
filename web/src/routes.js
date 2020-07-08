@@ -10,6 +10,7 @@ import EditProfile from './pages/Customer/EditProfile';
 import Bookings from './pages/Customer/Bookings';
 import NewBooking from './pages/Customer/NewBooking';
 
+import AdminLogin from './pages/Admin/AdminLogin';
 import AdminHome from './pages/Admin/AdminHome';
 import AdminViewSlots from './pages/Admin/AdminViewSlots';
 import AdminCreateSlot from './pages/Admin/AdminCreateSlot';
@@ -29,6 +30,7 @@ function Routes(){
         <Route path="/bookings" exact component={Bookings}/>
         <Route path="/bookings/new" exact component={NewBooking}/>
 
+        <Route path="/admin/login" exact component={AdminLogin}/>
         <Route path="/admin" exact component={AdminHome}/>
         <Route path="/admin/slots" exact component={AdminViewSlots}/>
         <Route path="/admin/slots/new" exact component={AdminCreateSlot}/>

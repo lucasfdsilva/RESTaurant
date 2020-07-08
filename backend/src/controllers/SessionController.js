@@ -28,6 +28,7 @@ module.exports = {
         message: "User Logged in succesfully",
         id: userFromDB.id,
         accessToken: accessToken,
+        isAdmin: userFromDB.is_admin
       });
     
     } catch (error) {
