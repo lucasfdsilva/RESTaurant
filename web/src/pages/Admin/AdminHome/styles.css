@@ -75,6 +75,12 @@
   background: rgb(89, 132, 212);
 }
 
+.admin-home-container menu .bookings-links {
+  display: flex;
+  flex-direction: column;
+  background: rgb(28, 73, 155);
+}
+
 .admin-home-container main {
   background: rgb(226, 226, 250);
   grid-area: main;

@@ -9,6 +9,8 @@ import AdminViewSlots from '../../../components/AdminViewSlots';
 import AdminCreateSlot from '../../../components/AdminCreateSlot';
 import AdminViewMenuItems from '../../../components/AdminViewMenuItems';
 import AdminCreateMenuItem from '../../../components/AdminCreateMenuItem';
+import AdminViewBookings from '../../../components/AdminViewBookings';
+import AdminCreateBooking from '../../../components/AdminCreateBooking';
 
 import './styles.css';
 
@@ -75,6 +77,11 @@ function AdminHome(){
           <Link onClick={() => setComponent('AdminViewMenuItems')}>View Menu Items</Link>
           <Link onClick={() => setComponent('AdminCreateMenuItem')}>Create Menu Item</Link>
         </div>
+
+        <div className="bookings-links">
+          <Link onClick={() => setComponent('AdminViewBookings')}>View Bookings</Link>
+          <Link onClick={() => setComponent('AdminCreateBooking')}>Create Booking</Link>
+        </div>
       </menu>
 
       <main>
@@ -104,6 +111,14 @@ function AdminHome(){
 
         {component == 'AdminCreateMenuItem' &&
           <AdminCreateMenuItem />
+        }
+
+        {component == 'AdminViewBookings' &&
+          <AdminViewBookings />
+        }
+
+        {component == 'AdminCreateBooking' &&
+          <AdminCreateBooking />
         }
       </main>
 
