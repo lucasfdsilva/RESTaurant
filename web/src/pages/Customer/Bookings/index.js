@@ -4,7 +4,7 @@ import { FiTrash2 } from 'react-icons/fi';
 
 import api from '../../../services/api'
 
-import LoggedNavMenu from '../../../components/LoggedNavMenu';
+import NavMenu from '../../../components/NavMenu';
 
 import './styles.css';
 
@@ -44,7 +44,7 @@ function Bookings(){
 
   return (
     <div className="bookings-container">
-      <LoggedNavMenu />
+      <NavMenu />
 
       <div className="content">
         <h1>Your Bookings</h1>

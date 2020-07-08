@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { FiEdit2, FiTrash2 } from 'react-icons/fi';
 
-import LoggedNavMenu from '../../../components/LoggedNavMenu';
+import NavMenu from '../../../components/NavMenu';
 
 import api from '../../../services/api';
 
@@ -58,7 +58,7 @@ function Profile(){
 
   return (
     <div className="profile-container">
-      <LoggedNavMenu />
+      <NavMenu />
 
       <div className="content">
         

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { FiArrowLeft } from 'react-icons/fi';
 
-import LoggedNavMenu from '../../../components/LoggedNavMenu';
+import NavMenu from '../../../components/NavMenu';
 
 import api from '../../../services/api';
 
@@ -64,7 +64,7 @@ function EditProfile(){
 
   return (
     <div className="register-container">
-      <LoggedNavMenu />
+      <NavMenu />
 
       <div className="content">
         <form onSubmit={handleUpdateProfile}>
