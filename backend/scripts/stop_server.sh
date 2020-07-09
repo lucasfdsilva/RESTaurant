@@ -1,2 +1,2 @@
 #!/bin/bash
-pm2 stop 'restaurant-backend'
+echo 'running stop server'
