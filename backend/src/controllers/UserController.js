@@ -5,8 +5,9 @@ const crypto = require("crypto");
 module.exports = {
   async index(req, res, next) {
     try {
+      const message = 'test message';
       const allUsersFromDB = await knex("users");
-      return res.json(allUsersFromDB);
+      return res.json(allUsersFromDB, message);
     } catch (error) {
         next(error);
     }
