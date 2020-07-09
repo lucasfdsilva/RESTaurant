@@ -2,7 +2,7 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /home/centos/restaurant-management
+    destination: /home/centos/
 hooks:
   AfterInstall:
     - location: backend/scripts/install_dependencies.sh
