@@ -1,4 +1,7 @@
 #!/bin/bash
 echo "Stopping Backend Server"
 pm2 stop
-sudo rm -rf /home/centos/restaurant-management
+
+file="/home/centos/restaurant-management"
+if [ -f $file ] ; then
+    sudo rm -r $file
