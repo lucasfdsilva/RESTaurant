@@ -30,21 +30,7 @@ sudo npx knex migrate:latest
 #pm2
 sudo npm install -g pm2@latest
 pm2 list
-pm2 start /home/centos/restaurant-management/backend/src/app.js --name  
-pm2 startup
-sudo env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -u centos --hp /home/centos
-pm2 save
-
-
-
-#pm2
-sudo npm install -g pm2
 pm2 start /home/centos/restaurant-management/backend/src/app.js --name restaurant-backend
 pm2 startup
 sudo env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -u centos --hp /home/centos
 pm2 save
-
-
-#nginx
-sudo yum install -y nginx
-sudo systemctl start nginx
