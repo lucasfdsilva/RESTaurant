@@ -4,6 +4,11 @@ files:
   - source: /
     destination: /home/centos/
 hooks:
+  ApplicationStop:
+    - location: backend/scripts/stop_server.sh
+      timeout: 300
+      runas: centos
+
   AfterInstall:
     - location: backend/scripts/install_dependencies.sh
       timeout: 300

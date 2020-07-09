@@ -7,11 +7,20 @@ RESTaurantDevInstances
 #!/bin/bash
 #general
 sudo yum -y update
-sudo yum -y install epel-release git vim-enhanced
+sudo yum -y install epel-release 
+sudo yum -y install git 
+sudo yum -y install vim-enhanced
+# Installing the CodeDeploy agent on EC2
+sudo yum install -y ruby wget
+wget https://aws-codedeploy-eu-west-1.s3.eu-west-1.amazonaws.com/latest/install
+chmod +x ./install
+sudo ./install auto
+sudo service codedeploy-agent status
 #nodejs
 curl -sL https://rpm.nodesource.com/setup_12.x | sudo bash -
 sudo yum install -y nodejs
 #restaurant-management
+cd /home/centos/
 sudo git clone https://github.com/lucasfdsilva/restaurant-management.git
 cd /home/centos/restaurant-management/backend
 sudo npm install
@@ -19,11 +28,22 @@ sudo npm install
 cd /home/centos/restaurant-management/backend
 sudo npx knex migrate:latest
 #pm2
+sudo npm install -g pm2@latest
+pm2 list
+pm2 start /home/centos/restaurant-management/backend/src/app.js --name  
+pm2 startup
+sudo env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -u centos --hp /home/centos
+pm2 save
+
+
+
+#pm2
 sudo npm install -g pm2
 pm2 start /home/centos/restaurant-management/backend/src/app.js --name restaurant-backend
 pm2 startup
 sudo env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -u centos --hp /home/centos
 pm2 save
+
 
 #nginx
 sudo yum install -y nginx
