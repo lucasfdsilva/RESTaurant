@@ -1,4 +1,3 @@
 #!/bin/bash
 echo "Installing NPM Dependencies"
-cd /home/centos/restaurant-management/backend
-sudo npm install
+sudo npm install /home/centos/restaurant-management/backend/
