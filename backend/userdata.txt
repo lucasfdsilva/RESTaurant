@@ -1,29 +1,23 @@
-#!/bin/bash
-
 #AMI ID
 CentOS Linux 7 x86_64 HVM EBS ENA 2002_01-b7ee8a69-ee97-4a49-9e68-afaee216db2e-ami-0042af67f8e4dcc20.4 (ami-0b850cf02cc00fdc8)
 
 #Role
 RESTaurantDevInstances
 
+#!/bin/bash
 #general
-sudo yum install epel-release
 sudo yum -y update
-sudo yum install -y git vim-enhanced
-
+sudo yum -y install epel-release git vim-enhanced
 #nodejs
 curl -sL https://rpm.nodesource.com/setup_12.x | sudo bash -
 sudo yum install -y nodejs
-
 #restaurant-management
-git clone https://github.com/lucasfdsilva/restaurant-management.git
-cd restaurant-management/backend
+sudo git clone https://github.com/lucasfdsilva/restaurant-management.git
+cd /home/centos/restaurant-management/backend
 sudo npm install
-
 #dbmigrations
 cd /home/centos/restaurant-management/backend
-npx knex migrate:latest
-
+sudo npx knex migrate:latest
 #pm2
 sudo npm install -g pm2
 pm2 start /home/centos/restaurant-management/backend/src/app.js --name restaurant-backend
