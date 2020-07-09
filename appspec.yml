@@ -4,11 +4,6 @@ files:
   - source: /
     destination: /home/centos/restaurant-management
 hooks:
-  ApplicationStop:
-    - location: backend/scripts/stop_server.sh
-      timeout: 300
-      runas: centos
-
   AfterInstall:
     - location: backend/scripts/install_dependencies.sh
       timeout: 300
