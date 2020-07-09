@@ -5,7 +5,7 @@ const crypto = require("crypto");
 module.exports = {
   async index(req, res, next) {
     try {
-      const message = 'test message';
+      const message = 'Another Message';
       const allUsersFromDB = await knex("users");
       return res.status(200).json({ allUsersFromDB: allUsersFromDB, message:message});
     } catch (error) {
