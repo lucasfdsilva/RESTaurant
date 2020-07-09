@@ -7,7 +7,7 @@ module.exports = {
     try {
       const message = 'test message';
       const allUsersFromDB = await knex("users");
-      return res.json(allUsersFromDB, message);
+      return res.status(200).json({ allUsersFromDB: allUsersFromDB, message:message});
     } catch (error) {
         next(error);
     }
