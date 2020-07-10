@@ -25,3 +25,9 @@ sudo npm install -g pm2@latest
 sudo pm2 start /home/ec2-user/restaurant-management/backend/src/app.js --name restaurant-backend
 sudo pm2 startup
 sudo pm2 save
+#web-deployment
+cd /home/ec2-user/restaurant-management/web
+sudo npm install -g serve
+sudo npm install
+sudo npm run build
+npm serve -s build
