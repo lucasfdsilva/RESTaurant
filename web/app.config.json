@@ -4,7 +4,7 @@
       "name": "restaurant-web",
       "script": "npx",
       "interpreter": "none",
-      "args": "serve -p 5000 -T"
+      "args": "serve -s build"
     }
   ]
 }
