@@ -5,21 +5,21 @@ files:
     destination: /home/centos/restaurant-management/
 hooks:
   ApplicationStop:
-    - location: backend/scripts/stop_server.sh
+    - location: backend/scripts/application_stop.sh
       timeout: 300
-      runas: centos
+      runas: root
 
   BeforeInstall:
     - location: backend/scripts/before_install.sh
       timeout: 300
-      runas: centos
+      runas: root
 
   AfterInstall:
-    - location: backend/scripts/install_dependencies.sh
+    - location: backend/scripts/after_install.sh
       timeout: 300
-      runas: centos
+      runas: root
 
   ApplicationStart:
-    - location: backend/scripts/start_server.sh
+    - location: backend/scripts/application_start.sh
       timeout: 300
-      runas: centos
+      runas: root
