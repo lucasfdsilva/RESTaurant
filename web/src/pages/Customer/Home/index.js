@@ -15,7 +15,7 @@ function Home(){
       <NavMenu />
 
       <div className="content">
-        <h1>Lucas' Pub</h1>
+        <h1>The Underdog Pub</h1>
         <h2>Beer Specialists</h2>
         <img src={pintImg} alt="image of a pint"/>
       </div>
