@@ -4,6 +4,7 @@ const awsParamStore = require( 'aws-param-store' );
 const dbHost = awsParamStore.getParameterSync('restaurant-db-host', { region: 'eu-west-1' } );
 const user = awsParamStore.getParameterSync('restaurant-db-username', { region: 'eu-west-1' } );
 const password = awsParamStore.getParameterSync('restaurant-db-password', { region: 'eu-west-1' } );
+const database = awsParamStore.getParameterSync('restaurant-db-database', { region: 'eu-west-1' } );
 
 module.exports = {
   
@@ -13,7 +14,7 @@ module.exports = {
       host: dbHost.Value,
       user: user.Value,
       password: password.Value,
-      database: 'restaurantdb',
+      database: database.Value,
       timezone: 'UTC',
       dateStrings: true
     },
