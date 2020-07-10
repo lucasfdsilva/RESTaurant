@@ -1,3 +1,2 @@
 #!/bin/bash
-cd /home/centos/
-sudo rm -rf restaurant-management
+sudo rm -rf /home/ec2-user/restaurant-management/
