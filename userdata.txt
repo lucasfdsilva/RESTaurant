@@ -28,6 +28,6 @@ cd /home/ec2-user/restaurant-management/web
 sudo npm install -g serve
 sudo npm install
 sudo npm run build
-sudo pm2 start app.config.json
+sudo pm2 start /home/ec2-user/restaurant-management/web/app.config.json
 sudo pm2 startup
 sudo pm2 save
