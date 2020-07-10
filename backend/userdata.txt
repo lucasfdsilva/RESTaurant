@@ -1,16 +1,10 @@
-#AMI ID
-CentOS Linux 7 x86_64 HVM EBS ENA 2002_01-b7ee8a69-ee97-4a49-9e68-afaee216db2e-ami-0042af67f8e4dcc20.4 (ami-0b850cf02cc00fdc8)
-
-#Role
-RESTaurantDevInstances
-
 #!/bin/bash
 #general
 sudo yum -y update
 sudo yum -y install epel-release 
 sudo yum -y install git 
 sudo yum -y install vim-enhanced
-# Installing the CodeDeploy agent on EC2
+#Installing the CodeDeploy agent on EC2
 cd /home/centos/
 sudo yum install -y ruby wget
 wget https://aws-codedeploy-eu-west-1.s3.eu-west-1.amazonaws.com/latest/install
@@ -30,8 +24,7 @@ cd /home/centos/restaurant-management/backend
 sudo npx knex migrate:latest
 #pm2
 sudo npm install -g pm2@latest
-pm2 list
-pm2 start /home/centos/restaurant-management/backend/src/app.js --name restaurant-backend
-pm2 startup
+sudo pm2 start /home/centos/restaurant-management/backend/src/app.js --name restaurant-backend
+sudo pm2 startup
 sudo env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -u centos --hp /home/centos
-pm2 save
+sudo pm2 save

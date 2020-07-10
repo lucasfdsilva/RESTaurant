@@ -7,19 +7,19 @@ hooks:
   ApplicationStop:
     - location: backend/scripts/application_stop.sh
       timeout: 300
-      runas: root
+      runas: centos
 
   BeforeInstall:
     - location: backend/scripts/before_install.sh
       timeout: 300
-      runas: root
+      runas: centos
 
   AfterInstall:
     - location: backend/scripts/after_install.sh
       timeout: 300
-      runas: root
+      runas: centos
 
   ApplicationStart:
     - location: backend/scripts/application_start.sh
       timeout: 300
-      runas: root
+      runas: centos
