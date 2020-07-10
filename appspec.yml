@@ -2,7 +2,7 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /home/centos/restaurant-management/
+    destination: /home/ec2-user/restaurant-management/
 hooks:
   ApplicationStop:
     - location: backend/scripts/application_stop.sh
