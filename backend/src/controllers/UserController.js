@@ -6,7 +6,7 @@ module.exports = {
   async index(req, res, next) {
     try {
       const allUsersFromDB = await knex("users");
-      return res.status(200).json({ allUsersFromDB: allUsersFromDB, message: 'Hey'});
+      return res.status(200).json({ allUsersFromDB: allUsersFromDB, message: 'Alow Bro'});
     } catch (error) {
         next(error);
     }
