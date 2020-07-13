@@ -17,7 +17,7 @@ function Login(){
   useEffect(() => {
     async function loadProfile(){
       try {
-        if(id && accessToken && isAdmin) return history.push('/admin');
+        if(id && accessToken && isAdmin === 1) return history.push('/admin');
 
       } catch (error) {
         alert(`Couldn't Load User Profile. Please try again. Error: ${error}.`);

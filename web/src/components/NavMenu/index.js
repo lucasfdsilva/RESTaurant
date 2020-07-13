@@ -24,6 +24,7 @@ function NavMenu(){
         <Link className="header-link" onClick={() => {
           localStorage.setItem('id', '');
           localStorage.setItem('accessToken', '');
+          localStorage.setItem('isAdmin', 0);
           window.location.reload();
           return history.push('/');
         }}>Logout</Link>
