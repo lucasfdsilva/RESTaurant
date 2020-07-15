@@ -1,4 +1,4 @@
-# restaurant-management
+# Restaurant Management System
 
 ## Functionality Requirements
 - [x]  Customer
@@ -64,7 +64,7 @@
     - [x]  Connect CP App with GitHub Repo (Master only so far)
     - [x]  Have CodePipeline to deploy to Code Deploy deployment group
 
-# To-do
+## To-do
 - [ ]  Check SNS for sending Email notifications without configuring the domain for SES
 - [ ]  Display user details on the Bookings section of admin panel
 - [ ]  Demonstrate the other deployment types (Blue-Green, Rolling)
