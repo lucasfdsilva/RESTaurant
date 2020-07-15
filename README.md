@@ -1,7 +1,6 @@
 # restaurant-management
----
+
 ## Functionality Requirements
----
 - [x]  Customer
     - [x]  General
         - [x]  Visit Home Page
@@ -31,47 +30,45 @@
     - [ ]  Receives Email Notification for new Bookings
     - [ ]  General Site Configuration Management
 
-    ## CI/CD Pipeline Configuration Tasks
-    ---
-    - [x]  Configure a Launch Template to be used by the EC2 Auto Scaling Group
-        - [x]  Name: RESTaurant-AWS-Linux
-        - [x]  AMI: Amazon Linux 2
-        - [x]  Instance Type: t2.micro
-        - [x]  Networking Platform: EC2-Classic
-        - [x]  Instance Profile: RESTaurantDevInstances
-        - [x]  User Data
-            - [x]  Install Updates
-            - [x]  Install CodeDeploy Agent
-            - [x]  Install NodeJS
-            - [x]  Install PM2
-            - [x]  Install Serve
-            - [x]  Install Git, VIM, Epel, Ruby and Wget
-            - [x]  Clone RESTaurant-management Repo from Lucas' GitHub
-            - [x]  Build React App
-            - [x]  Run backend using PM2
-            - [x]  Run Serve on Frontend using PM2
-    - [x]  Configure Load Balancer
-        - [x]  Name: RESTaurant-ClassicLB
-    - [x]  Configure Auto Scaling Group
-        - [x]  Name: RESTaurant
-        - [x]  Template: RESTaurant-AWS-Linux
-        - [x]  Networking: Default VPC - 3 default subnets included
-        - [x]  Scaling Policy: CPU > 80%
-        - [x]  New Instance Warm up time: 300 seconds
-    - [x]  Configure CodeDeploy
-        - [x]  CodeDeploy Agent Installation included as part of Launch Template
-        - [x]  Configure CodeDeploy Deployment Group to EC2 Instances = Tag Name = RESTaurant-dev
-    - [x]  Configure CodePipeline
-        - [x]  Create CodePipeline Application
-        - [x]  Connect CP App with GitHub Repo (Master only so far)
-        - [x]  Have CodePipeline to deploy to Code Deploy deployment group
+## CI/CD Pipeline Configuration Tasks
+- [x]  Configure a Launch Template to be used by the EC2 Auto Scaling Group
+    - [x]  Name: RESTaurant-AWS-Linux
+    - [x]  AMI: Amazon Linux 2
+    - [x]  Instance Type: t2.micro
+    - [x]  Networking Platform: EC2-Classic
+    - [x]  Instance Profile: RESTaurantDevInstances
+    - [x]  User Data
+        - [x]  Install Updates
+        - [x]  Install CodeDeploy Agent
+        - [x]  Install NodeJS
+        - [x]  Install PM2
+        - [x]  Install Serve
+        - [x]  Install Git, VIM, Epel, Ruby and Wget
+        - [x]  Clone RESTaurant-management Repo from Lucas' GitHub
+        - [x]  Build React App
+        - [x]  Run backend using PM2
+        - [x]  Run Serve on Frontend using PM2
+- [x]  Configure Load Balancer
+    - [x]  Name: RESTaurant-ClassicLB
+- [x]  Configure Auto Scaling Group
+    - [x]  Name: RESTaurant
+    - [x]  Template: RESTaurant-AWS-Linux
+    - [x]  Networking: Default VPC - 3 default subnets included
+    - [x]  Scaling Policy: CPU > 80%
+    - [x]  New Instance Warm up time: 300 seconds
+- [x]  Configure CodeDeploy
+    - [x]  CodeDeploy Agent Installation included as part of Launch Template
+    - [x]  Configure CodeDeploy Deployment Group to EC2 Instances = Tag Name = RESTaurant-dev
+- [x]  Configure CodePipeline
+    - [x]  Create CodePipeline Application
+    - [x]  Connect CP App with GitHub Repo (Master only so far)
+    - [x]  Have CodePipeline to deploy to Code Deploy deployment group
 
-        # To-do
-        ---
-        - [ ]  Check SNS for sending Email notifications without configuring the domain for SES
-        - [ ]  Display user details on the Bookings section of admin panel
-        - [ ]  Demonstrate the other deployment types (Blue-Green, Rolling)
-        - [ ]  Demonstrate Rollback process (Database Migration Executed, but deployment failed??)
-        - [ ]  Take Database Snapshots
-        - [ ]  Implement a few tests
-        - [ ]  Build separate environments (Dev, Test, Q&A, Prod) and the promote process between these stages
+# To-do
+- [ ]  Check SNS for sending Email notifications without configuring the domain for SES
+- [ ]  Display user details on the Bookings section of admin panel
+- [ ]  Demonstrate the other deployment types (Blue-Green, Rolling)
+- [ ]  Demonstrate Rollback process (Database Migration Executed, but deployment failed??)
+- [ ]  Take Database Snapshots
+- [ ]  Implement a few tests
+- [ ]  Build separate environments (Dev, Test, Q&A, Prod) and the promote process between these stages
