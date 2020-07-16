@@ -1,6 +1,52 @@
 # Restaurant Management System
+This is an application built to be used as a platform to demonstrate to customers how AWS services can be used in modern applications.
 
-## Functionality Requirements
+## How it works
+The application is composed of a NodeJS/Express REST backend which serves the ReactJS frontend via HTTP calls. 
+The website front-end has two main components. The customer area, where customers can see the Menu, create account, login and Book Slots for attending the Pub/Restaurant.
+There's also an admin panel where the restaurant administration can manage bookings, users, menu items and slots available.
+
+## How to Install
+    #general
+    sudo yum -y update
+    sudo yum -y install epel-release 
+    sudo yum -y install git vim-enhanced ruby wget
+
+    #Installing the CodeDeploy agent on EC2
+    cd /home/ec2-user/
+    wget https://aws-codedeploy-eu-west-1.s3.eu-west-1.amazonaws.com/latest/install
+    sudo chmod +x ./install
+    sudo ./install auto
+    sudo service codedeploy-agent status
+
+    #nodejs
+    curl -sL https://rpm.nodesource.com/setup_12.x | sudo bash -
+    sudo yum install -y nodejs
+
+    #restaurant-management
+    cd /home/ec2-user/
+    sudo git clone https://github.com/lucasfdsilva/restaurant-management.git
+    cd /home/ec2-user/restaurant-management/backend
+    sudo npm install
+
+    #DB migrations
+    cd /home/ec2-user/restaurant-management/backend
+    sudo npx knex migrate:latest
+
+    #pm2
+    sudo npm install -g pm2@latest
+    sudo pm2 start /home/ec2-user/restaurant-management/backend/src/app.js --name restaurant-backend
+
+    #web-deployment
+    cd /home/ec2-user/restaurant-management/web
+    sudo npm install -g serve
+    sudo npm install
+    sudo npm run build
+    sudo pm2 start /home/ec2-user/restaurant-management/web/app.config.json
+    sudo pm2 startup
+    sudo pm2 save
+
+## Functionality Requirements Development
 - [x]  Customer
     - [x]  General
         - [x]  Visit Home Page

@@ -1,0 +1,21 @@
+http://localhost:3000/menu
+
+###
+http://localhost:3000/slots
+
+###
+http://localhost:3000/users
+
+###
+http://localhost:3000/bookings
+
+###
+POST http://localhost:3000/users HTTP/1.1
+content-type: application/json
+{
+  "firstName": "",
+	"lastName": "",
+	"email": "",
+	"password": "",
+	"isAdmin": false
+}
