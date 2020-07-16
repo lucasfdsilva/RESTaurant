@@ -1,4 +1,4 @@
-# Restaurant Management System
+# RESTaurant - Management System
 This is an application built to be used as a platform to demonstrate to customers how AWS services can be used in modern applications.
 
 ## How it works
