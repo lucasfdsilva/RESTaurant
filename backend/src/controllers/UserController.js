@@ -2,6 +2,11 @@ const knex = require("../database/knex");
 const bcrypt = require("bcryptjs");
 const crypto = require("crypto");
 
+const AWS = require('aws-sdk');
+AWS.config.update({region: 'eu-west-1'});
+
+const sqs = new AWS.SQS({apiVersion: '2012-11-05'});
+
 module.exports = {
   async index(req, res, next) {
     try {
@@ -48,7 +53,7 @@ module.exports = {
       const salt = await bcrypt.genSalt();
       const hashedPassword = await bcrypt.hash(password, salt);
 
-      verificationToken = crypto.randomBytes(20).toString("hex");
+      const verificationToken = crypto.randomBytes(20).toString("hex");
 
       const newUser = await knex('users').insert({
         first_name: firstName,
@@ -59,7 +64,38 @@ module.exports = {
         verification_token: verificationToken,
       });
 
-      return res.status(201).json({ message: "User Created Succesfully", newUserID: newUser });
+      const SQSParams = {
+        // Remove DelaySeconds parameter and value for FIFO queues
+        MessageAttributes: {
+          "firstName": {
+            DataType: "String",
+            StringValue: firstName
+          },
+          "email": {
+            DataType: "String",
+            StringValue: email.toLowerCase()
+          },
+          "verificationToken": {
+            DataType: "String",
+            StringValue: verificationToken
+          },
+        },
+        MessageBody: "Information required to submit Verification Email",
+        MessageDeduplicationId: verificationToken,  // Required for FIFO queues
+        MessageGroupId: "Group1",  // Required for FIFO queues
+        QueueUrl: "https://sqs.eu-west-1.amazonaws.com/128363080680/RESTaurant-SendEmailVerification.fifo"
+      }
+
+      sqs.sendMessage(SQSParams, function(err, data){
+        if (err) {
+          console.log("Error", err);
+          return res.status(500).json({ err });
+        } else {
+          console.log("Success", data.MessageId);
+        }
+      })
+
+      return res.status(201).json({ message: "User Created Successfully", newUserID: newUser });
 
     } catch (error) {
         next(error);
