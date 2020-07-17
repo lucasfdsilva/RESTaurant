@@ -1,5 +1,9 @@
 const knex = require("../database/knex");
 
+const AWS = require('aws-sdk');
+AWS.config.update({region: 'eu-west-1'});
+const sqs = new AWS.SQS({apiVersion: '2012-11-05'});
+
 module.exports = {
   async index(req, res, next) {
     try {
@@ -55,6 +59,44 @@ module.exports = {
         start_time: startTime,
         duration: duration 
       });
+
+      const SQSParams = {
+        MessageAttributes: {
+          "bookingID": {
+            DataType: "String",
+            StringValue: String(newBooking[0])
+          },
+          "date": {
+            DataType: "String",
+            StringValue: date
+          },
+          "startTime": {
+            DataType: "String",
+            StringValue: startTime
+          },
+          "duration": {
+            DataType: "String",
+            StringValue: String(duration)
+          },
+          "numberOfPeople": {
+            DataType: "String",
+            StringValue: String(numberOfPeople)
+          },
+        },
+        MessageBody: "New Booking Confirmation Email",
+        MessageDeduplicationId: String(newBooking[0]),  // Required for FIFO queues
+        MessageGroupId: "Group1",  // Required for FIFO queues
+        QueueUrl: "https://sqs.eu-west-1.amazonaws.com/128363080680/RESTaurant-BookingConfirmationEmail.fifo"
+      }
+
+      sqs.sendMessage(SQSParams, function(err, data){
+        if (err) {
+          console.log("Error", err);
+          return res.status(500).json({ err });
+        } else {
+          console.log("Success", data.MessageId);
+        }
+      })
 
       return res.status(201).json({ message: "Booking Registered Succesfully" });
 

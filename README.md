@@ -61,12 +61,12 @@ There's also an admin panel where the restaurant administration can manage booki
         - [x]  Edit Profile
         - [x]  Delete Account
         - [ ]  Can Reset Password
-        - [ ]  Can Verify Email address
+        - [x]  Can Verify Email address
     - [x]  Bookings
         - [x]  View Previous Bookings
         - [x]  Check Slots Availability
         - [x]  Book Slot for visiting the restaurant
-        - [ ]  Receives Confirmation Email
+        - [ ]  User Receives Confirmation Email after placing booking
 - [x]  Restaurant Management
     - [x]  Separate Login Middleware to verify Admin Status
     - [x]  Manage Menu Items

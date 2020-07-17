@@ -14,6 +14,7 @@ function Profile(){
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
+  const [verified, setVerified] = useState(0);
   const [memberSince, setMemberSince] = useState('')
 
   const history = useHistory();
@@ -29,6 +30,7 @@ function Profile(){
       setFirstName(response.data.user.first_name);
       setLastName(response.data.user.last_name);
       setEmail(response.data.user.email);
+      setVerified(response.data.user.verified);
       setMemberSince(response.data.user.created_at);
 
     } catch (error) {
@@ -71,6 +73,9 @@ function Profile(){
 
           <strong>Email: </strong>
           <p>{email}</p>
+
+          <strong>Verified: </strong>
+          <p>{verified}</p>
 
           <strong>Member Since: </strong>
           <p>{memberSince}</p>
