@@ -5,6 +5,7 @@ import Home from './pages/Customer/Home';
 import Menu from './pages/Customer/Menu';
 import Login from './pages/Customer/Login';
 import Register from './pages/Customer/Register';
+import VerifyEmailAddress from './pages/Customer/VerifyEmailAddress';
 import Profile from './pages/Customer/Profile';
 import EditProfile from './pages/Customer/EditProfile';
 import Bookings from './pages/Customer/Bookings';
@@ -25,6 +26,7 @@ function Routes(){
         <Route path="/menu" exact component={Menu}/>
         <Route path="/login" exact component={Login}/>
         <Route path="/register" exact component={Register}/>
+        <Route path="/users/verify/:verificationToken" exact component={VerifyEmailAddress}/>
         <Route path="/profile" exact component={Profile}/>
         <Route path="/profile/edit" exact component={EditProfile}/>
         <Route path="/bookings" exact component={Bookings}/>

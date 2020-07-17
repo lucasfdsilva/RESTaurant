@@ -61,6 +61,7 @@ There's also an admin panel where the restaurant administration can manage booki
         - [x]  Edit Profile
         - [x]  Delete Account
         - [ ]  Can Reset Password
+        - [ ]  Can Verify Email address
     - [x]  Bookings
         - [x]  View Previous Bookings
         - [x]  Check Slots Availability
@@ -111,7 +112,7 @@ There's also an admin panel where the restaurant administration can manage booki
     - [x]  Have CodePipeline to deploy to Code Deploy deployment group
 
 ## To-do
-- [ ]  Check SNS for sending Email notifications without configuring the domain for SES
+- [x]  Build Queue System for sending out User Email Verification upon Registration
 - [ ]  Display user details on the Bookings section of admin panel
 - [ ]  Demonstrate the other deployment types (Blue-Green, Rolling)
 - [ ]  Demonstrate Rollback process (Database Migration Executed, but deployment failed??)

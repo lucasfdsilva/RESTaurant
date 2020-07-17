@@ -149,4 +149,28 @@ module.exports = {
         next(error);
     }
   },
+
+  async verifyEmailAddress(req, res, next) {
+    try {
+
+      const { verificationToken } = req.params;
+
+      if (!verificationToken) {
+        return res.status(400).json({ message: "Missing Required Information from Request" });
+      }
+
+      const userFromDB = await knex("users").where({ verification_token: verificationToken }).first();
+
+      if(!userFromDB) return res.status(400).json({ message: "No User Found with this verification token" });
+
+      const verifiedUser = await knex('users').where({ verification_token: verificationToken }).update({
+        verified: 1
+      });
+
+      return res.status(200).json({ message: 'User email address verified successfully.' });
+
+    } catch (error) {
+        next(error);
+    }
+  },
 };
