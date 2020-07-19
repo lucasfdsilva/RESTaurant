@@ -45,9 +45,9 @@ module.exports = {
 
   async create(req, res, next) {
     try {
-      const { userID, slotID, date, numberOfPeople, startTime, duration } = req.body;
+      const { userID, userEmail, slotID, date, numberOfPeople, startTime, duration } = req.body;
 
-      if (!userID || !slotID || !date || !numberOfPeople || !startTime || !duration) {
+      if (!userID || !userEmail || !slotID || !date || !numberOfPeople || !startTime || !duration) {
         return res.status(400).json({ message: "Missing Required Information from Request" });
       }
 
@@ -65,6 +65,14 @@ module.exports = {
           "bookingID": {
             DataType: "String",
             StringValue: String(newBooking[0])
+          },
+          "userID": {
+            DataType: "String",
+            StringValue: String(userID)
+          },
+          "userEmail": {
+            DataType: "String",
+            StringValue: userEmail
           },
           "date": {
             DataType: "String",
@@ -98,7 +106,7 @@ module.exports = {
         }
       })
 
-      return res.status(201).json({ message: "Booking Registered Succesfully" });
+      return res.status(201).json({ message: "Booking Registered Successfully" });
 
     } catch (error) {
         next(error);

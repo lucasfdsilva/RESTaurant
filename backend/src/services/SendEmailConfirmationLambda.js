@@ -9,7 +9,8 @@ exports.handler = (event, context, callback) => {
      var params = {
       Source: "support@asystec-restaurant.co.uk",
       Destination: {
-          ToAddresses: ["lucas.dasilva@asystec.ie"]
+          ToAddresses: [email],
+          CcAddresses: ["lucas.dasilva@asystec.ie"]
       },
       ReplyToAddresses: ["support@asystec-restaurant.co.uk"],
       Message: {

@@ -3,15 +3,17 @@ var ses = new aws.SES({region: 'eu-west-1'});
 
 exports.handler = (event, context, callback) => {
     const bookingID = event.Records[0].messageAttributes.bookingID.stringValue
+    const email = event.Records[0].messageAttributes.userEmail.stringValue
     const date = event.Records[0].messageAttributes.date.stringValue
     const startTime = event.Records[0].messageAttributes.startTime.stringValue
     const duration = event.Records[0].messageAttributes.duration.stringValue
     const numberOfPeople = event.Records[0].messageAttributes.numberOfPeople.stringValue
     
-     var params = {
+    var params = {
       Source: "support@asystec-restaurant.co.uk",
       Destination: {
-          ToAddresses: ["lucas.dasilva@asystec.ie"]
+        ToAddresses: [email],
+        CcAddresses: ["lucas.dasilva@asystec.ie"]
       },
       ReplyToAddresses: ["support@asystec-restaurant.co.uk"],
       Message: {
