@@ -37,8 +37,8 @@ export default function NavigationMenu(){
           <FiBookOpen size={16} color="#e02041"/>
             Bookings
           </Link>
-          <Link to="/bookings/new">
-          <FiBook size={16} color="#e02041"/>
+          <Link className="book-online" to="/bookings/new">
+          <FiBook size={16} color="#FFF"/>
             Book Online
           </Link>
           <Link to="" onClick={() => {
@@ -79,6 +79,10 @@ export default function NavigationMenu(){
             <Link className="header-link" to="/login">
               <FiLogIn size={16} color="#e02041"/>
               Login
+            </Link>
+            <Link className="book-online" to="/bookings/new">
+              <FiBook size={16} color="#FFF"/>
+              Book Online
             </Link>
           </div>
       </div>

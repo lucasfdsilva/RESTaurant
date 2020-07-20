@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import { FiLogIn } from 'react-icons/fi';
 
 import api from '../../services/api';
 
@@ -73,8 +74,16 @@ export default function Login(){
             onChange={event => setPassword(event.target.value)}
           />
 
-          <button type="submit">Login</button>
-          </form>
+          <button type="submit"
+            disabled={!email || !password}>
+            Login
+          </button>
+        </form>
+
+        <Link className="back-link" to="/register">
+          <FiLogIn size={16} color="#e02041"/>
+          Don't have an account?
+        </Link>
           
       </div>
 

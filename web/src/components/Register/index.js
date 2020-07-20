@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import { FiArrowLeft } from 'react-icons/fi';
 
 import './styles.css';
 
@@ -99,10 +100,18 @@ export default function Register(){
               onChange={event => setPasswordConfirmation(event.target.value)}
             />
 
-            <button type="submit">Register</button>
+            <button type="submit" 
+              disabled={!firstName || !lastName || !email || !password || !passwordConfirmation }>
+              Register
+            </button>
           </form>
-        </div>
 
+          <Link to="/login">
+            <FiArrowLeft size={16} color="#e02041"/>
+            Already have an account?
+          </Link>
+
+        </div>
       </div>
   )
 }

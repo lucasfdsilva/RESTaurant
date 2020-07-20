@@ -81,5 +81,30 @@
   filter: brightness(90%);
 }
 
+.login-content form button:disabled {
+  background: rgb(190, 190, 190);
+  color: #f0f0f5;
+  cursor: not-allowed;
+}
+
+.login-content a {
+  display: flex;
+  align-items: center;
+  margin-left: 30px;
+  text-decoration: none;
+  color: #000;
+  font-size: 20px;
+  font-weight: 500;
+  transition: opacity 0.2s;
+}
+
+.login-content a:hover {
+  opacity: 0.5;
+}
+
+.login-content svg {
+  margin-right: 10px;
+}
+
 
 

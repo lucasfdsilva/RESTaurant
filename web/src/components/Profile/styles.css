@@ -72,6 +72,23 @@
   margin-right: 10px;
 }
 
+.profile-content .verification-button {
+  height: 30px;
+  margin-left: 15px;
+  background: #FFF;
+  border: 2px solid red;
+  border-radius: 5px;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 5px;
+  cursor: pointer;
+  transition: filter 0.2s;
+}
+
+.profile-content .verification-button:hover {
+  filter: brightness(90%);
+}
+
 
 
 

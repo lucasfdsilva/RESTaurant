@@ -38,6 +38,25 @@ export default function Profile(){
   loadProfile();
   }, [])
 
+  async function handleVerificationEmail(event){
+    event.preventDefault();
+
+    try{
+
+      const data = {
+        firstName,
+        email
+      }
+
+      const response = await api.post('/users/verify/send', data)
+
+      alert('Verification Email Successfully');
+
+    } catch(error){
+      alert(`Couldn't send verification email. Error: ${error}`)
+    }
+  }
+
   async function handleDeleteUser(){
     try {
 
@@ -76,7 +95,9 @@ export default function Profile(){
           {verified ? (
             <p>Yes</p>
           ) : (
-            <p>No</p>
+            <>
+              <p>No <button className="verification-button" onClick={handleVerificationEmail}>Send Verification Email</button></p>
+            </>
           )}
 
           <strong>Member Since:</strong>

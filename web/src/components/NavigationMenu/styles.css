@@ -41,6 +41,12 @@
   opacity: 0.5;
 }
 
+.navigation-menu .book-online {
+  border-radius: 5px;
+  padding: 5px;
+  background: #ff6257;
+}
+
 .navigation-menu svg {
   margin-right: 10px;
 }
