@@ -63,6 +63,7 @@ export default function NewBooking() {
     try {
       const data = {
         userID: id,
+        email,
         date,
         slotID,
         numberOfPeople: parseInt(numberOfPeople),
@@ -72,7 +73,7 @@ export default function NewBooking() {
 
       const response = await api.post('bookings', data);
 
-      alert('Booking Registered Succesfully');
+      alert('Booking Registered Successfully');
 
       history.push('/bookings');
 
