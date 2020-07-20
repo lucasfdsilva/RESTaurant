@@ -1,26 +1,21 @@
-import React from 'react';
-import { Link, useHistory } from 'react-router-dom';
-import NavMenu from '../../../components/NavMenu';
+import React, { useEffect, useState } from 'react'
 
-import './styles.css';
+import './styles.css'
 
-import pintImg from '../../../assets/pint-img.png';
+import NavigationMenu from '../../../components/NavigationMenu';
+import Footer from '../../../components/Footer';
 
-function Home(){
+import HomePageBody from '../../../components/Home';
 
-  const history = useHistory();
+export default function Layout() {
 
   return (
-    <div className="home-container">
-      <NavMenu />
+    <div className="layout">
+      <NavigationMenu/>
 
-      <div className="content">
-        <h1>Pub Name</h1>
-        <h2>The Best Pub</h2>
-        <img src={pintImg} alt="image of a pint"/>
-      </div>
+      <HomePageBody/>
+
+      <Footer/>
     </div>
   )
 }
-
-export default Home;

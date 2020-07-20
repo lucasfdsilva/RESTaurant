@@ -1,46 +1,42 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
-
-import NavMenu from '../../../components/NavMenu';
-
-import api from '../../../services/api';
+import { useHistory, useParams } from 'react-router-dom';
 
 import './styles.css';
 
-function VerifyEmailAddress(props){
+import api from '../../services/api';
+
+export default function VerifyEmail(){
   const [id, setID] = useState(localStorage.getItem("id"));
   const [accessToken, setAccessToken] = useState(localStorage.getItem("accessToken"));
-  const [verificationToken, setVerificationToken] = useState(props.match.params.verificationToken);
+  const { token } = useParams();
+  const [verificationToken, setVerificationToken] = useState(token);
   const [message, setMessage] = useState('');
-
-  const history = useHistory();
 
   useEffect(() => {
     async function verifyEmailAddressHandler(){
       try {
 
         const response = await api.put(`/users/verify/${verificationToken}`);
+
         console.log(response)
 
         setMessage(response.data.message);
 
       } catch (error) {
         alert(`Couldn't Verify User Email Address. Please try again. Error: ${error}.`);
+        console.log(error)
       }
   }
   verifyEmailAddressHandler();
   }, [])
 
   return (
-    <div className="register-container">
-      <NavMenu />
+    <div className="verify-email-container">
 
-      <div className="content">
-        <h1>{message}</h1>
+      <div className="verify-email-content">
+        <h1>Thank you! Your email address has been verified.</h1>
       </div>
      
     </div>
   )
 }
-
-export default VerifyEmailAddress;

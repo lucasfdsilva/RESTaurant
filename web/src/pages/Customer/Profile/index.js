@@ -1,99 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
-import { FiEdit2, FiTrash2 } from 'react-icons/fi';
+import React, { useEffect, useState } from 'react'
 
-import NavMenu from '../../../components/NavMenu';
+import './styles.css'
 
-import api from '../../../services/api';
+import NavigationMenu from '../../../components/NavigationMenu';
+import Footer from '../../../components/Footer';
 
-import './styles.css';
+import Profile from '../../../components/Profile';
 
-function Profile(){
-  const [id, setID] = useState(localStorage.getItem("id"));
-  const [accessToken, setAccessToken] = useState(localStorage.getItem("accessToken"));
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
-  const [verified, setVerified] = useState(0);
-  const [memberSince, setMemberSince] = useState('')
-
-  const history = useHistory();
-
-  useEffect(() => {
-    async function loadProfile(){
-    try {
-      
-      if(!id || !accessToken) return history.push('/login');
-      
-      const response = await api.get(`/users/${id}`);
-
-      setFirstName(response.data.user.first_name);
-      setLastName(response.data.user.last_name);
-      setEmail(response.data.user.email);
-      setVerified(response.data.user.verified);
-      setMemberSince(response.data.user.created_at);
-
-    } catch (error) {
-      alert(`Couldn't Load User Profile. Please try again. Error: ${error}.`);
-    }
-  }
-  loadProfile();
-  }, [])
-
-  async function handleDeleteUser(){
-    try {
-
-      const response = await api.delete('users', { data: { id: id }});
-
-      localStorage.setItem('id', '');
-      localStorage.setItem('accessToken', '');
-
-      alert(`User Deleted Succesfully ${response.data}`);
-
-      history.push('/');
-      
-    } catch (error) {
-      alert(`Could not delete user. Error: ${error}`)
-    }
-
-  }
+export default function Layout(props) {
 
   return (
-    <div className="profile-container">
-      <NavMenu />
+    <div className="layout">
+      <NavigationMenu/>
 
-      <div className="content">
-        
-        <form>
-          <strong>First Name: </strong>
-          <p>{firstName}</p>
+      <Profile/>
 
-          <strong>Last Name: </strong>
-          <p>{lastName}</p>
-
-          <strong>Email: </strong>
-          <p>{email}</p>
-
-          <strong>Verified: </strong>
-          <p>{verified}</p>
-
-          <strong>Member Since: </strong>
-          <p>{memberSince}</p>
-        </form>
-
-        <Link className="back-link" to="/profile/edit">
-          <FiEdit2 size={16} color="#e02041"/>
-          Edit Profile
-        </Link>
-
-        <Link className="back-link" onClick={handleDeleteUser}>
-          <FiTrash2 size={16} color="#e02041"/>
-          Delete Account
-        </Link>
-
-      </div>
+      <Footer/>
     </div>
   )
 }
-
-export default Profile;

@@ -171,4 +171,56 @@ module.exports = {
         next(error);
     }
   },
+
+  async sendVerificationEmail(req, res, next) {
+    try {
+
+      const { firstName, email } = req.body;
+
+      if (!firstName || !email) {
+        return res.status(400).json({ message: "Missing Required Information from Request" });
+      }
+
+      const userFromDB = await knex("users").where({ email: email }).first();
+
+      console.log(userFromDB);
+
+      if(!userFromDB) return res.status(400).json({ message: "No User Found with this email" });
+
+      const SQSParams = {
+        MessageAttributes: {
+          "firstName": {
+            DataType: "String",
+            StringValue: firstName
+          },
+          "email": {
+            DataType: "String",
+            StringValue: email.toLowerCase()
+          },
+          "verificationToken": {
+            DataType: "String",
+            StringValue: userFromDB.verification_token
+          },
+        },
+        MessageBody: "Information required to submit Verification Email",
+        MessageDeduplicationId: userFromDB.verification_token,  // Required for FIFO queues
+        MessageGroupId: "Group1",  // Required for FIFO queues
+        QueueUrl: "https://sqs.eu-west-1.amazonaws.com/128363080680/RESTaurant-SendEmailVerification.fifo"
+      }
+
+      sqs.sendMessage(SQSParams, function(err, data){
+        if (err) {
+          console.log("Error", err);
+          return res.status(500).json({ err });
+        } else {
+          console.log("Success", data.MessageId);
+        }
+      })
+
+      return res.status(200).json({ message: 'Verification Email Added to SQS queue successfully.' });
+
+    } catch (error) {
+        next(error);
+    }
+  },
 };
