@@ -45,7 +45,7 @@ export default function NavigationMenu(){
             localStorage.setItem('id', '');
             localStorage.setItem('accessToken', '');
             localStorage.setItem('isAdmin', 0);
-            return history.push('/');
+            return history.push('/login'); 
           }}>
             <FiLogOut size={16} color="#e02041"/>
             Logout
