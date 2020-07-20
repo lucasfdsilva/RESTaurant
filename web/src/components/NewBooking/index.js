@@ -63,7 +63,7 @@ export default function NewBooking() {
     try {
       const data = {
         userID: id,
-        email,
+        userEmail: email,
         date,
         slotID,
         numberOfPeople: parseInt(numberOfPeople),
