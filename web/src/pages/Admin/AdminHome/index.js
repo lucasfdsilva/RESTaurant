@@ -14,8 +14,6 @@ import AdminCreateBooking from '../../../components/AdminCreateBooking';
 
 import './styles.css';
 
-import asystecLogo from '../../../assets/logo-small.png'
-
 function AdminHome(){
   const [id, setID] = useState(localStorage.getItem("id"));
   const [accessToken, setAccessToken] = useState(localStorage.getItem("accessToken"));
@@ -30,13 +28,15 @@ function AdminHome(){
   useEffect(() => {
     async function loadProfile(){
     try {
+      if(!id || !accessToken) return history.push('/admin/login');
+
       const response = await api.get(`/users/${id}`);
 
       setFirstName(response.data.user.first_name);
       setLastName(response.data.user.last_name);
       setIsAdmin(response.data.user.is_admin);
 
-      if(!id || !accessToken || response.data.user.is_admin === 0 ) return history.push('/admin/login');
+      if(response.data.user.is_admin === 0 ) return history.push('/admin/login');
       
     } catch (error) {
       alert(`Couldn't Load User Profile. Please try again. Error: ${error}.`);
@@ -48,7 +48,6 @@ function AdminHome(){
   return (
     <div className="admin-home-container">
       <header>
-        <img src={asystecLogo} alt="asystec"/>
 
         <p>Logged as: {firstName +' '+lastName}</p>
         <Link onClick={() => {

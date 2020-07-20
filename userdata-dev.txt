@@ -1,0 +1,32 @@
+#!/bin/bash
+#general
+sudo yum -y update  
+sudo yum -y install epel-release git vim-enhanced ruby wget
+#Installing the CodeDeploy agent on EC2
+cd /home/ec2-user/
+wget https://aws-codedeploy-eu-west-1.s3.eu-west-1.amazonaws.com/latest/install
+sudo chmod +x ./install
+sudo ./install auto
+sudo service codedeploy-agent status
+#nodejs
+curl -sL https://rpm.nodesource.com/setup_12.x | sudo bash -
+sudo yum install -y nodejs
+#restaurant-management
+cd /home/ec2-user/
+sudo git clone -b dev --single-branch https://github.com/lucasfdsilva/RESTaurant.git
+cd /home/ec2-user/RESTaurant/backend
+sudo npm install
+#dbmigrations
+cd /home/ec2-user/RESTaurant/backend
+sudo npx knex migrate:latest
+#pm2
+sudo npm install -g pm2@latest
+sudo pm2 start /home/ec2-user/RESTaurant/backend/src/app.js --name restaurant-backend
+#web-deployment
+cd /home/ec2-user/RESTaurant/web
+sudo npm install -g serve
+sudo npm install
+sudo npm run build
+sudo pm2 start /home/ec2-user/RESTaurant/web/app.config.json
+sudo pm2 startup
+sudo pm2 save

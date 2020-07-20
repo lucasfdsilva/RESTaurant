@@ -19,6 +19,7 @@ openRoutes.post('/users', UserController.create);
 openRoutes.put('/users', UserController.update);
 openRoutes.delete('/users', UserController.delete);
 openRoutes.put('/users/verify/:verificationToken', UserController.verifyEmailAddress);
+openRoutes.post('/users/verify/send', UserController.sendVerificationEmail);
 
 //Menu Item Controller Routes
 openRoutes.get('/menu', MenuItemController.index);

@@ -1,15 +1,16 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import Home from './pages/Customer/Home';
-import Menu from './pages/Customer/Menu';
-import Login from './pages/Customer/Login';
-import Register from './pages/Customer/Register';
-import VerifyEmailAddress from './pages/Customer/VerifyEmailAddress';
-import Profile from './pages/Customer/Profile';
-import EditProfile from './pages/Customer/EditProfile';
-import Bookings from './pages/Customer/Bookings';
-import NewBooking from './pages/Customer/NewBooking';
+import Home from './pages/Customer/Home'
+import Menu from './pages/Customer/Menu'
+import Register from './pages/Customer/Register'
+import Login from './pages/Customer/Login'
+import VerifyEmail from './pages/Customer/VerifyEmail'
+
+import Profile from './pages/Customer/Profile'
+import EditProfile from './pages/Customer/EditProfile'
+import Bookings from './pages/Customer/Bookings'
+import NewBooking from './pages/Customer/NewBooking'
 
 import AdminLogin from './pages/Admin/AdminLogin';
 import AdminHome from './pages/Admin/AdminHome';
@@ -24,9 +25,10 @@ function Routes(){
       <Switch>
         <Route path="/" exact component={Home}/>
         <Route path="/menu" exact component={Menu}/>
-        <Route path="/login" exact component={Login}/>
         <Route path="/register" exact component={Register}/>
-        <Route path="/users/verify/:verificationToken" exact component={VerifyEmailAddress}/>
+        <Route path="/login" exact component={Login}/>
+        <Route path="/users/verify/:token" exact component={VerifyEmail}/>
+
         <Route path="/profile" exact component={Profile}/>
         <Route path="/profile/edit" exact component={EditProfile}/>
         <Route path="/bookings" exact component={Bookings}/>

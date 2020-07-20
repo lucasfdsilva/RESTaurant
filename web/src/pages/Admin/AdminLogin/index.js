@@ -1,86 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import React, { useEffect, useState } from 'react'
 
-import api from '../../../services/api';
+import './styles.css'
 
-import './styles.css';
+import NavigationMenu from '../../../components/NavigationMenu';
+import Footer from '../../../components/Footer';
 
-function Login(){
-  const [id, setID] = useState(localStorage.getItem("id"));
-  const [accessToken, setAccessToken] = useState(localStorage.getItem("accessToken"));
-  const [isAdmin, setIsAdmin] = useState(localStorage.getItem("isAdmin"));
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+import AdminLogin from '../../../components/AdminLogin';
 
-  const history = useHistory();
+export default function Layout(props) {
 
-  useEffect(() => {
-    async function loadProfile(){
-      try {
-        if(id && accessToken && isAdmin === 1) return history.push('/admin');
-
-      } catch (error) {
-        alert(`Couldn't Load User Profile. Please try again. Error: ${error}.`);
-      }
-  }
-  loadProfile();
-  }, [])
-
-  async function handleLogin(event){
-    event.preventDefault();
-
-    const data = {
-      email,
-      password
-    }
-
-    try {
-      const response = await api.post('sessions', data);
-      if(!response.data.isAdmin) return alert('User is not an admin. Cannot access Admin Panel');
-
-      localStorage.setItem('id', response.data.id);
-      localStorage.setItem('accessToken', response.data.accessToken);
-      localStorage.setItem('isAdmin', response.data.isAdmin);
-
-      alert(`User Logged In Successfully. JWT Token: ${localStorage.getItem('accessToken')}`);
-
-      history.push('/admin');
-
-    } catch (error) {
-        alert(`Couldn't Log in. Error: ${error}.`);
-    }
-  }
-  
   return (
-    <div className="login-container">
+    <div className="layout">
+      <NavigationMenu/>
 
-      <div className="content">
-        <section className="form">
-          
-          <form onSubmit={handleLogin}>
-            <h1>Login</h1>
+      <AdminLogin/>
 
-            <input 
-              type="email" 
-              placeholder="you@email.com"
-              value={email}
-              onChange={event => setEmail(event.target.value)}
-            />
-            <input 
-              type="password" 
-              placeholder="password"
-              value={password}
-              onChange={event => setPassword(event.target.value)}
-            />
-
-            <button className="button" type="submit">Login</button>
-
-          </form>
-        </section>
-
-      </div>
+      <Footer/>
     </div>
   )
 }
-
-export default Login;
