@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
-
+import { Link } from 'react-router-dom';
+import { FiEdit } from 'react-icons/fi';
 
 import './styles.css';
 
 import api from '../../../services/api';
 
-function AdminViewSlots(){
+export default function AdminViewSlots(){
   const [slots, setSlots] = useState([]);
 
   useEffect(() => {
@@ -32,29 +32,25 @@ function AdminViewSlots(){
   }, [])
 
   return (
-    <div className="admin-slots-container">
-      <h1>Registered Slots</h1>
+    <div className="admin-view-slots-container">
 
-      <div className="slots">
+      <div className="admin-view-slots-content">
+
+        <h1>Registered Slots</h1>
+
+        <Link to='/admin/slots/new'>
+          <FiEdit size={16} color="#0c71c3"/>
+          Create Slot  
+        </Link>
+
         <ul>
           {slots.map(slot => (
-
             <li key={slot.id}>
-              <strong>Slot ID:</strong>
-              <p>{slot.id}</p>
-
-              <strong>Start Time:</strong>
-              <p>{slot.start_time}</p>
-
-              <strong>Duration:</strong>
-              <p>{slot.duration} minutes</p>
-
-              <strong>Max Capacity:</strong>
-              <p>{slot.max_capacity} people</p>
-
-              <strong>Weekdays:</strong>
-              <p>{slot.week_days}</p>
-
+              <p><strong className="id">Slot ID: </strong>{slot.id}</p>
+              <p><strong className="start_time">Start Time: </strong>{slot.start_time}</p>
+              <p><strong className="duration">Duration: </strong>{slot.duration} minutes</p>
+              <p><strong className="max_capacity">Max Capacity: </strong>{slot.max_capacity} people</p>
+              <p><strong className="week_days">Weekdays: </strong>{slot.week_days}</p>
             </li>
           ))}
         </ul>
@@ -65,5 +61,3 @@ function AdminViewSlots(){
     
   )
 }
-
-export default AdminViewSlots;

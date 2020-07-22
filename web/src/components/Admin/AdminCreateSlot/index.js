@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import { FiArrowLeft } from 'react-icons/fi';
 
 import './styles.css';
 
@@ -38,36 +39,42 @@ function AdminCreateSlots(){
     try {
       const response = await api.post('slots', data);
 
-      alert(`Slot created succesfully`);
+      alert(`Slot created successfully`);
 
       history.push('/admin/slots')
 
     } catch (error) {
-        alert(`Couldn't create slot`);
+        alert(`Couldn't create slot. Error: ${error}`);
     }
   }
 
   return (
-    <div className="admin-slots-container">
-      <h1>Create Slot</h1>
+    <div className="admin-create-slot-container">
+      <div className="admin-create-slot-content">
+        <h1>Create Slot</h1>
 
-      <form onSubmit={handleSlotCreation}>
+        <Link to='/admin/slots'>
+          <FiArrowLeft size={16} color="#0c71c3"/>
+          All Slots 
+        </Link> 
 
-          <strong>Start Time:</strong>
+        <form onSubmit={handleSlotCreation}>
+
+          <p>Start Time:</p>
           <input 
             type="time"
             placeholder="Start Time e.g. 18:00"
             value={startTime}
             onChange={event => setStartTime(event.target.value)}
           />
-          <strong>Duration (in minutes):</strong>
+          <p>Duration (in minutes):</p>
           <input 
             type="number"
             placeholder="Duration in minutes"
             value={duration}
             onChange={event => setDuration(event.target.value)}
           />
-          <strong>Maximum capacity:</strong>
+          <p>Maximum capacity:</p>
           <input 
             type="number" 
             placeholder="Maximum people capacity"
@@ -75,61 +82,83 @@ function AdminCreateSlots(){
             onChange={event => setMaxCapacity(event.target.value)}
           />
 
-          <h2>Week days</h2>
           <div className="weekdays">
-            <strong>Monday</strong>
-            <input 
-              type="checkbox" 
-              value={monday}
-              onChange={event => setMonday(event.target.checked)}
-            />
+            <strong>Week days</strong>
+            <label className="custom-checkbox-container">
+              <input 
+                type="checkbox" 
+                value={monday}
+                onChange={event => setMonday(event.target.checked)}
+              />
+              <span class="checkmark"></span>
+              Monday
+            </label>
 
-            <strong>Tuesday</strong>
-            <input 
-              type="checkbox" 
-              value={tuesday}
-              onChange={event => setTuesday(event.target.checked)}
-            />
+            <label className="custom-checkbox-container">
+              <input 
+                type="checkbox" 
+                value={tuesday}
+                onChange={event => setTuesday(event.target.checked)}
+              />
+              <span class="checkmark"></span>
+              Tuesday
+            </label>
 
-            <strong>Wednesday</strong>
-            <input 
-              type="checkbox" 
-              value={wednesday}
-              onChange={event => setWednesday(event.target.checked)}
-            />
+            <label className="custom-checkbox-container">
+              <input 
+                type="checkbox" 
+                value={wednesday}
+                onChange={event => setWednesday(event.target.checked)}
+              />
+              <span class="checkmark"></span>
+              Wednesday
+            </label>
 
-            <strong>Thursday</strong>
-            <input 
-              type="checkbox" 
-              value={thursday}
-              onChange={event => setThursday(event.target.checked)}
-            />
+            <label className="custom-checkbox-container">
+              <input 
+                type="checkbox" 
+                value={thursday}
+                onChange={event => setThursday(event.target.checked)}
+              />
+              <span class="checkmark"></span>
+              Thursday
+            </label>
 
-            <strong>Friday</strong>
-            <input 
-              type="checkbox" 
-              value={friday}
-              onChange={event => setFriday(event.target.checked)}
-            />
+            <label className="custom-checkbox-container">
+              <input 
+                type="checkbox" 
+                value={friday}
+                onChange={event => setFriday(event.target.checked)}
+              />
+              <span class="checkmark"></span>
+              Friday
+            </label>
 
-            <strong>Saturday</strong>
-            <input 
-              type="checkbox" 
-              value={saturday}
-              onChange={event => setSaturday(event.target.checked)}
-            />
+            <label className="custom-checkbox-container">
+              <input 
+                type="checkbox" 
+                value={saturday}
+                onChange={event => setSaturday(event.target.checked)}
+              />
+              <span class="checkmark"></span>
+              Saturday
+            </label>
 
-            <strong>Sunday</strong>
-            <input 
-              type="checkbox" 
-              value={sunday}
-              onChange={event => setSunday(event.target.checked)}
-            />
+            <label className="custom-checkbox-container">
+              <input 
+                type="checkbox" 
+                value={sunday}
+                onChange={event => setSunday(event.target.checked)}
+              />
+              <span class="checkmark"></span>
+              Sunday
+            </label>
           </div>
 
           <button className="button" type="submit">Create Slot</button>
 
-      </form>
+        </form>
+      </div>
     
     </div>
   )
