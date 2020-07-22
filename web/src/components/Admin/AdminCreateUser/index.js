@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import { FiArrowLeft } from 'react-icons/fi';
 
 import './styles.css';
 
 import api from '../../../services/api';
 
-function AdminCreateUser(){
+export default function AdminCreateUser(){
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
@@ -39,33 +40,48 @@ function AdminCreateUser(){
   }
 
   return (
-    <div className="admin-slots-container">
-      <h1>Create User</h1>
+    <div className="admin-create-user-container">
 
-      <form onSubmit={handleRegister}>
+      <div className="admin-create-user-content">
+        <h1>Create User</h1>
 
-      <input 
+        <Link to='/admin/users'>
+          <FiArrowLeft size={16} color="#0c71c3"/>
+          All Users 
+        </Link> 
+
+        <form onSubmit={handleRegister}>
+          <p>First Name:</p>
+          <input 
             placeholder="First Name"
             value={firstName}
             onChange={event => setFirstName(event.target.value)}
           />
+
+          <p>Last Name:</p>
           <input 
             placeholder="Last Name"
             value={lastName}
             onChange={event => setLastName(event.target.value)}
           />
+
+          <p>Email:</p>
           <input 
             type="email" 
             placeholder="you@email.com"
             value={email}
             onChange={event => setEmail(event.target.value)}
           />
+
+          <p>Password:</p>
           <input 
             type="password" 
             placeholder="password"
             value={password}
             onChange={event => setPassword(event.target.value)}
           />
+
+          <p>Confirm Password:</p>
           <input 
             type="password" 
             placeholder="confirm password"
@@ -73,21 +89,23 @@ function AdminCreateUser(){
             onChange={event => setPasswordConfirmation(event.target.value)}
           />
 
-          <div className="weekdays">
-          <strong>Is Admin? </strong>
-            <input 
-              type="checkbox" 
-              value={isAdmin}
-              onChange={event => setIsAdmin(event.target.checked)}
-            />
-          </div>
+          <p>Is Admin?</p>
+          <input
+            checked
+            className="is-admin" 
+            type="checkbox" 
+            value={isAdmin}
+            onChange={event => setIsAdmin(event.target.checked)}
+          />
 
-          <button className="button" type="submit">Create User</button>
+          <button type="submit" 
+            disabled={!firstName || !lastName || !email || !password || !passwordConfirmation }>
+            Create User
+          </button>
 
-      </form>
+        </form>
+      </div>
     
     </div>
   )
 }
-
-export default AdminCreateUser;

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
-
+import { Link } from 'react-router-dom';
+import { FiEdit } from 'react-icons/fi';
 
 import './styles.css';
 
@@ -25,31 +25,28 @@ export default function AdminViewUsers(){
   }, [])
 
   return (
-    <div className="admin-slots-container">
+    <div className="admin-view-users-container">
+
+      <div className="admin-view-users-content">
       <h1>Registered Users</h1>
 
-      <div className="slots">
-        <ul>
-          {users.map(user => (
+      <Link to='/admin/users/new'>
+        <FiEdit size={16} color="#0c71c3"/>
+        Create User  
+      </Link> 
 
-            <li key={user.id}>
-              <strong>User ID:</strong>
-              <p>{user.id}</p>
+      <ul>
+        {users.map(user => (
+          <li key={user.id}>
+            <p><strong className="id">User ID:</strong> {user.id}</p>
+            <p><strong className="first-name">First Name:</strong> {user.first_name}</p>
+            <p><strong className="last-name">Last Name:</strong> {user.last_name}</p>
+            <p><strong className="email">Email:</strong> {user.email}</p>
+            <p><strong className="admin">Is Admin:</strong> {user.is_admin}</p>
+          </li>
+        ))}
+      </ul>
 
-              <strong>First Name:</strong>
-              <p>{user.first_name}</p>
-
-              <strong>Last Name:</strong>
-              <p>{user.last_name}</p>
-
-              <strong>Email:</strong>
-              <p>{user.email}</p>
-
-              <strong>Is Admin:</strong>
-              <p>{user.is_admin}</p>
-            </li>
-          ))}
-        </ul>
       </div>
     
     </div>

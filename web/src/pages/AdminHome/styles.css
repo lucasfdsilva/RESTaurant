@@ -2,52 +2,11 @@
   display: grid;
 
   grid-template-columns: 1fr 6fr;
-  grid-template-rows: 60px minmax(830px, auto) 50px;
+  grid-template-rows: 6vh minmax(88vh, auto) 6vh;
 
   grid-template-areas: 
   "header header" 
   "menu main" 
   "footer footer";
+
 }
-
-.admin-home-container header {
-  grid-area: header;
-  
-  background: rgb(146, 165, 250);
-  display: flex;
-  align-items: center;
-}
-
-.admin-home-container header img {
-  height: 60px;
-  width: 200px;
-  margin-left: 45px;
-}
-
-.admin-home-container header p {
-  color: #f6f7f2;
-  margin-left: 1300px;
-}
-
-.admin-home-container header a {
-  margin-left: 25px;
-}
-
-.admin-home-container footer {
-  background: rgb(146, 165, 250);
-  grid-area: footer;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.admin-home-container footer p {
-  color: #FFF
-}
-
-.admin-home-container .footer-links {
-  font-size: 16px;
-}
-
-
