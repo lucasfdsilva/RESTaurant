@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
-import { FiTrash2 } from 'react-icons/fi';
-
+import { Link } from 'react-router-dom';
+import { FiEdit, FiTrash2 } from 'react-icons/fi';
 
 import './styles.css';
 
 import api from '../../../services/api';
 
-function AdminViewBookings(){
+export default function AdminViewBookings(){
   const [id, setID] = useState(localStorage.getItem("id"));
   const [accessToken, setAccessToken] = useState(localStorage.getItem("accessToken"));
 
@@ -32,16 +31,22 @@ function AdminViewBookings(){
 
     api.delete('bookings', { data: { id: bookingID }});
 
-    alert('Booking Deleted Succesfully');
+    alert('Booking Deleted Successfully');
 
     window.location.reload();
   }
 
   return (
-    <div className="bookings-container">
-        <h1>All Bookings</h1>
+    <div className="admin-view-bookings-container">
 
-        <div className="bookings">
+        <div className="admin-view-bookings-content">
+          <h1>All Bookings</h1>
+
+          <Link to='/admin/bookings/new'>
+            <FiEdit size={16} color="#0c71c3"/>
+            Create Booking  
+          </Link> 
+
           <ul>
             {bookings.map(booking => (
               <li key={booking.id}>
@@ -74,5 +79,3 @@ function AdminViewBookings(){
     </div>
   )
 }
-
-export default AdminViewBookings;

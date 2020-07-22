@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
-
+import { Link } from 'react-router-dom';
+import { FiEdit } from 'react-icons/fi';
 
 import './styles.css';
 
 import api from '../../../services/api';
 
-function AdminViewSlots(){
+export default function AdminViewMenuItems(){
   const [menuItems, setMenuItems] = useState([]);
 
   useEffect(() => {
@@ -24,30 +24,33 @@ function AdminViewSlots(){
   }, [])
 
   return (
-    <div className="admin-slots-container">
-      <h1>Menu Items</h1>  
+    <div className="admin-view-menu-container">
+      <div className="admin-view-menu-content">
+        <h1>Menu Items</h1>  
 
-      <ul>
-        {menuItems.map(item => (
-          <li key={item.id}>
-            <strong>Menu Item ID:</strong>
-            <p>{item.id}</p>
+        <Link to='/admin/menu/new'>
+          <FiEdit size={16} color="#0c71c3"/>
+          Create Menu Item  
+        </Link> 
 
-            <strong>Name:</strong>
-            <p>{item.name}</p>
+        <ul>
+          {menuItems.map(item => (
+            <li key={item.id}>
+              <strong>Menu Item ID:</strong>
+              <p>{item.id}</p>
 
-            <strong>Price:</strong>
-            <p>€{item.price}</p>
+              <strong>Name:</strong>
+              <p>{item.name}</p>
 
-            <strong>Description:</strong>
-            <p>{item.description}</p>
-          </li>
-        ))}
-      </ul>
+              <strong>Price:</strong>
+              <p>€{item.price}</p>
+
+              <strong>Description:</strong>
+              <p>{item.description}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
-
-    
   )
 }
-
-export default AdminViewSlots;

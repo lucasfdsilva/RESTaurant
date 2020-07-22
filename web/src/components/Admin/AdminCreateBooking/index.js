@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-
-import api from '../../../services/api';
+import { FiArrowLeft } from 'react-icons/fi';
 
 import './styles.css';
 
-function NewBooking() {
+import api from '../../../services/api';
+
+export default function AdminCreateBooking() {
   const [id, setID] = useState(localStorage.getItem("id"));
   const [accessToken, setAccessToken] = useState(localStorage.getItem("accessToken"));
   const [firstName, setFirstName] = useState('');
@@ -43,32 +44,38 @@ function NewBooking() {
   async function handleCheckAvailability(event){
     event.preventDefault();
 
-    const response = await api.get(`availability?date=${date}&numberOfPeople=${parseInt(numberOfPeople)}`);
-    if(response.data.availableSlots.length == 0){
-      alert('No Slots available on this date');
+    try{
+      const response = await api.get(`availability?date=${date}&numberOfPeople=${parseInt(numberOfPeople)}`);
+
+      if(response.data.availableSlots.length == 0){
+        alert('No Slots available on this date');
+      }
+      
+      setAvailableSlots(response.data.availableSlots);
+    } catch(error){
+      alert(`Couldn't load available slots. Please try again. error: ${error}`)
     }
-    
-    setAvailableSlots(response.data.availableSlots);
   }
 
   async function handleBookingCreation(event){
     event.preventDefault();
 
-    const data = {
-      userID: id,
-      date,
-      slotID,
-      numberOfPeople: parseInt(numberOfPeople),
-      startTime,
-      duration
-    }
-
     try {
+      const data = {
+        userID: id,
+        userEmail: email,
+        date,
+        slotID,
+        numberOfPeople: parseInt(numberOfPeople),
+        startTime,
+        duration
+      }
+
       const response = await api.post('bookings', data);
 
-      alert('Booking Registered Succesfully');
+      alert('Booking Registered Successfully');
 
-      window.location.reload();
+      history.push('/bookings');
 
     } catch (error) {
       alert(`Couldn't Create Booking.`);
@@ -76,15 +83,25 @@ function NewBooking() {
   }
 
   return (
-    <div className="new-booking-container">
+    <div className="admin-create-booking-container">
+
+      <div className="admin-create-booking-content">
+
+        <h1>New Booking</h1>
+
+        <Link to="/admin/bookings">
+          <FiArrowLeft size={16} color="#0c71c3"/>
+          All Bookings
+        </Link>
 
         <form action="submit">
-
+          <p>Date:</p>  
           <input 
             type="date" 
             value={date}
             onChange={event => setDate(event.target.value)}
           />
+          <p>Number of People:</p>
           <input 
             type="number" 
             placeholder="Number of people"
@@ -94,9 +111,14 @@ function NewBooking() {
 
           <button className="secondary-button" onClick={handleCheckAvailability}>Check Availability</button>
 
+          {availableSlots.length > 0 ? (
+            <p className="available-slots">Available Slots:</p>
+          ) : (
+            <></>
+          )}
           <ul>
             {availableSlots.map(slot => (
-              <button key={slot.slot_id} value={slotID} onClick={ 
+              <button className="slot-button" key={slot.slot_id} value={slotID} onClick={ 
                 function(event){ 
                   event.preventDefault();
                   setSlotID(slot.slot_id);
@@ -108,7 +130,8 @@ function NewBooking() {
               </button>
             ))}
           </ul>
-
+          
+          <p className="available-slots">Confirmation Email:</p>
           <input 
             type="email" 
             placeholder="Your email you@email.com"
@@ -117,11 +140,10 @@ function NewBooking() {
             disabled={slotID == 0}
           />
 
-          <button className="button" disabled={slotID == 0} onClick={handleBookingCreation}>Send Booking</button>
-
+          <button className="primary-button" disabled={slotID == 0} onClick={handleBookingCreation}>Send Booking</button>
         </form>
+
+      </div>
     </div>
   )
 }
-
-export default NewBooking;

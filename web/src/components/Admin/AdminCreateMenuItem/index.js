@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import { FiArrowLeft } from 'react-icons/fi';
 
 import './styles.css';
 
 import api from '../../../services/api';
 
-function AdminCreateSlots(){
+export default function AdminCreateMenuItem(){
   const [name, setName] = useState('');
   const [price, setPrice] = useState(0);
   const [description, setDescription] = useState('');
@@ -34,11 +35,16 @@ function AdminCreateSlots(){
   }
 
   return (
-    <div className="admin-slots-container">
-      <h1>Create Menu Item</h1>
+    <div className="admin-create-menu-container">
+      <div className="admin-create-menu-content">
+        <h1>Create Menu Item</h1>
 
-      <form onSubmit={handleMenuItemCreation}>
+        <Link to='/admin/menu'>
+          <FiArrowLeft size={16} color="#0c71c3"/>
+          All Menu Items 
+        </Link> 
 
+        <form onSubmit={handleMenuItemCreation}>
           <strong>Name:</strong>
           <input 
             type="text"
@@ -70,10 +76,8 @@ function AdminCreateSlots(){
 
           <button className="button" type="submit">Create Menu Item</button>
 
-      </form>
-    
+        </form>
+      </div>
     </div>
   )
 }
-
-export default AdminCreateSlots;
