@@ -90,13 +90,16 @@ export default function AdminCreateUser(){
           />
 
           <p>Is Admin?</p>
-          <input
+          <label className="custom-checkbox-container">
+            <input
             checked
-            className="is-admin" 
-            type="checkbox" 
-            value={isAdmin}
-            onChange={event => setIsAdmin(event.target.checked)}
-          />
+              className="is-admin" 
+              type="checkbox" 
+              value={isAdmin}
+              onChange={event => setIsAdmin(event.target.checked)}
+            />
+            <span class="checkmark"></span>
+          </label>
 
           <button type="submit" 
             disabled={!firstName || !lastName || !email || !password || !passwordConfirmation }>
