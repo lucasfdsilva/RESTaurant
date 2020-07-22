@@ -43,6 +43,8 @@ export default function Login(){
       localStorage.setItem('accessToken', response.data.accessToken);
 
       alert(`User Logged In Successfully. JWT Token: ${localStorage.getItem('accessToken')}`);
+      
+      window.location.reload();
 
       history.push('/profile');
 

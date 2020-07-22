@@ -41,11 +41,11 @@ export default function NavigationMenu(){
           <FiBook size={16} color="#FFF"/>
             Book Online
           </Link>
-          <Link to="" onClick={() => {
+          <Link onClick={() => {
             localStorage.setItem('id', '');
             localStorage.setItem('accessToken', '');
             localStorage.setItem('isAdmin', 0);
-            return history.push('/login'); 
+            window.location.reload();
           }}>
             <FiLogOut size={16} color="#e02041"/>
             Logout

@@ -86,7 +86,6 @@ export default function NewBooking() {
     <div className="new-booking-container">
 
       <div className="new-booking-content">
-
         <h1>New Booking</h1>
 
         <Link to="/bookings">
